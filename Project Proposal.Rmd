@@ -2,7 +2,9 @@
 title: "Project Proposal"
 author: "Xu Yang"
 date: "10/11/2017"
-output: html_document
+output: 
+  md_document:
+    variant: markdown_github
 ---
 
 ```{r setup, include=FALSE}
