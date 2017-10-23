@@ -12,15 +12,8 @@ page_total<-as.numeric(sub('^.* ([[:alnum:]]+)$', '\\1', page_info))
 result_info<-html_text(html_nodes(webpage_high,'.search-result-counter'))
 result_cnt<-as.numeric(sub("\\s.*","",result_info))
 cnt_perpage<-ceiling(result_cnt/page_total)
+
 #Rank,School_Name,School_district,Niche_rating,Students_num,Teacher_ratio
-#.pagination__pages__selector
-#.search-result-counter  
-#Rank: .search-result-badge-ordinal
-#School Name: .search-result-entity-name
-#School District+Grade: .search-result-tagline__item
-#Niche_rating: .niche__grade--small--a-plus
-#Students_num: .search-result-fact-list__item:nth-child(2) .search-result-fact__value
-#Teacher_ratio: .search-result-fact-list__item~ .search-result-fact-list__item+ .search-result-fact-list__item .search-result-fact__value
 
 rank_data<-c()
 s_name<-c()
@@ -69,8 +62,6 @@ for (page_no in 1:page_total){
    s_dist_grade_page<-html_text(html_nodes(webpage_high,'.search-result-tagline__item'))
    s_dist_grade_page<-s_dist_grade_page[ !grepl("Online|online", s_dist_grade_page)]
    s_dist_grade_page<-s_dist_grade_page[  !s_dist_grade_page %in% c("Public School","Public school","public school")]
-   #s_dist_grade_page<-s_dist_grade_page[ !grepl("Online", s_dist_grade_page)]
-   #s_dist_grade_page<-s_dist_grade_page[ !grepl("Public School", s_dist_grade_page)]
    #s_dist_grade_page<-s_dist_grade_page[is.na(as.numeric(s_dist_grade_page)) ]
    s_dist_grade_page<-s_dist_grade_page[!grepl("[[:digit:]]", s_dist_grade_page)]
    s_district<-c(s_district,s_dist_grade_page)
