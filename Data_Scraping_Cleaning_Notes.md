@@ -31,3 +31,8 @@ Data Cleaning Procedure
 3.I removed "," from "Students Number" and transform it into numeric.
 
 4.In the future there is a big job to do is to get address for each shcool.That's the key connection to job market data set.
+
+Output .csv file
+================
+
+best\_public\_high\_wa.csv
