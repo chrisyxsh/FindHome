@@ -1,18 +1,18 @@
-Untitled
+Scraping and Cleaning Data from Niche.com
 ================
 
-Scraping and Cleaning Data from Niche.com
-=========================================
+Introduction
+============
 
 "Scrap\_Niche.R" is to scrape public high school listing information from &lt;www.niche.com&gt;.This is one of jobs to prepare data set for "FindHome" project.
 
 Scraping Tools
---------------
+==============
 
 I use "SelectorGadget",Google Chrome browser and "rvest" R package as a tools-set.
 
 Data Contents Scraped
----------------------
+=====================
 
 -   School Ranking
 -   School Name
@@ -22,7 +22,7 @@ Data Contents Scraped
 -   School Student-Teacher Ratio
 
 Data Cleaning Procedure
------------------------
+=======================
 
 1.There are total 623 high schools in the list,and only 166 school have been ranked.I give NA to others' rank value.
 
