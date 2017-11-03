@@ -2,10 +2,14 @@
 library('rvest')
 library('stringr')
 
-
 #Url for best high school in Washingtong state website to be scrapped
 high_url_prefix<-'https://www.niche.com/k12/search/best-public-high-schools/s/washington/?page='
 high_url_page_first<-'https://www.niche.com/k12/search/best-public-high-schools/s/washington/'
+#School Address: https://www.niche.com/k12/lakeside-school-seattle-wa/
+#https://www.niche.com/k12/tesla-stem-high-school-redmond-wa/
+# https://www.niche.com/k12/tesla-stem-high-school-redmond-wa/
+# .profile__address div div
+
 webpage_high<-read_html(high_url_page_first)
 page_info<-html_text(html_nodes(webpage_high,'.pagination__pages__selector'))
 page_total<-as.numeric(sub('^.* ([[:alnum:]]+)$', '\\1', page_info))
@@ -33,8 +37,9 @@ for (page_no in 1:page_total){
   students_num_page<-c()
   teacher_ratio_page<-c()
   
-  high_url<-paste(high_url_1,as.character(page_no),sep="")
+  high_url<-paste(high_url_prefix,as.character(page_no),sep="")
   webpage_high<-read_html(high_url)
+  
   
   #Scrape School Ranking  
   rank_data_page<-html_text(html_nodes(webpage_high,'.search-result-badge-ordinal'))
@@ -78,7 +83,13 @@ for (page_no in 1:page_total){
    teacher_ratio_page<-html_text(html_nodes(webpage_high,'.search-result-fact-list__item~ .search-result-fact-list__item+ .search-result-fact-list__item .search-result-fact__value'))
    teacher_ratio<-c(teacher_ratio,teacher_ratio_page)
    
+  
+   
 }
 
 best_public_high_wa<-data.frame(rank_data,s_name,s_district,n_rating,students_num,teacher_ratio)
-write.csv(best_public_high_wa, file = "best_public_high_wa.csv")
+write.csv(best_public_high_wa, file = "best_public_high_wa.csv",row.names = FALSE)
+
+
+
+
