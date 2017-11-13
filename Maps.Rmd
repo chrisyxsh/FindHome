@@ -1,0 +1,73 @@
+---
+title: "Maps"
+author: "Xu Yang"
+date: "11/12/2017"
+output: html_document
+---
+
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r msa_school, echo=FALSE}
+pub_school_msa<-read.table("PUB_SCHOOL_ZIP_MSA.csv",header = TRUE,sep=",",colClasses = 'character',stringsAsFactors=FALSE)
+pub_school_msa$rank_data<-as.numeric(pub_school_msa$rank_data)
+pub_school_msa$students_num<-as.numeric(pub_school_msa$students_num)
+
+library(dplyr)
+library(ggplot2)
+library(leaflet)
+library(tigris)
+library(sp)
+library(rgeos)
+library(tidycensus)
+library(tidyverse)
+library(sf)
+options(tigris_class = "sf")
+options(tigris_use_cache = TRUE)
+
+cb <- core_based_statistical_areas(cb = TRUE)
+
+geo_msa_school<-geo_join(cb, pub_school_msa, 'GEOID', 'MSA.code', how = "inner")
+geo_msa_school$n_rating<-factor(geo_msa_school$n_rating)
+
+msa_school<-geo_msa_school%>%group_by(GEOID,NAME) %>%
+  summarise(high_rank = min(rank_data), students_num = sum(students_num), school_count = n())
+
+
+msa_school_map <- leaflet(msa_school) %>%
+  addProviderTiles("MapBox", options = providerTileOptions(
+    id = "mapbox.light",
+    accessToken = Sys.getenv('MAPBOX_ACCESS_TOKEN')))
+
+bins <- c(0, 10, 20, 40,60,80,100,150,200,300,500,1000, Inf)
+pal <- colorBin("YlOrRd", domain = msa_school$high_rank, bins = bins)
+
+labels <- sprintf(
+  "<strong>%s</strong><br/>%g School Highest Rank",
+  msa_school$NAME, msa_school$high_rank
+) %>% lapply(htmltools::HTML)
+
+msa_school_map <- msa_school_map %>% addPolygons(
+  fillColor = ~pal(high_rank),
+  weight = 2,
+  opacity = 1,
+  color = "white",
+  dashArray = "3",
+  fillOpacity = 0.7,
+  highlight = highlightOptions(
+    weight = 5,
+    color = "#666",
+    dashArray = "",
+    fillOpacity = 0.7,
+    bringToFront = TRUE),
+  label = labels,
+  labelOptions = labelOptions(
+    style = list("font-weight" = "normal", padding = "3px 8px"),
+    textsize = "15px",
+    direction = "auto"))
+msa_school_map
+```
+
+
