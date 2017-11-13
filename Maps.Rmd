@@ -10,7 +10,7 @@ output: html_document
 
 You can also embed plots, for example:
 
-```{r msa_school, echo=FALSE}
+```{r msa_school, echo=TRUE}
 pub_school_msa<-read.table("PUB_SCHOOL_ZIP_MSA.csv",header = TRUE,sep=",",colClasses = 'character',stringsAsFactors=FALSE)
 pub_school_msa$rank_data<-as.numeric(pub_school_msa$rank_data)
 pub_school_msa$students_num<-as.numeric(pub_school_msa$students_num)
