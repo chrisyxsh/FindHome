@@ -1,0 +1,805 @@
+---
+title: "Find Home"
+author: "Xu Yang"
+date: "11/20/2017"
+output: 
+  prettydoc::html_pretty:
+    theme: cayman
+    highlight: github
+---
+
+```{r eval=TRUE,echo=TRUE,message=FALSE,error=FALSE,warning=FALSE,results='hide'}
+library(tidyr)
+library(dplyr)
+library(zoo)
+library(stringr)
+library(stringdist)
+library(reshape2)
+library(ggplot2)
+library(leaflet)
+library(tigris)
+library(sp)
+library(rgeos)
+library(tidycensus)
+library(tidyverse)
+library(sf)
+library(gdata)
+library(openxlsx)
+library(RColorBrewer)
+library(grid) 
+```
+
+#Project Purpose
+
+There are many reasons for people to change a place to live.Chaning job,changing children's school,company relocation,seeking quietness or looking for more energetic life,etc..Whatever you just need a reason to move.Question is how reasonable your reason can be?
+
+A reasonable reason is not like "I just wanna move but I don't know where and how to go".It should be a plan,a solution convincing you even your family that you really have a right choice.
+
+But how to prove a choice is a right choice? Sometimes you thought you already made a right decision,but serveral years or months or days later,you realized it was a big mistake and you had to do it again.In some case one more time means lot lot of time and money!
+
+This project is to make an analysis for the purpose.
+
+#Data Source
+To do analysis,we need data.Here,we will focus on schools and jobs.Since I have moved into Washington State without any data analysis,then I will firstly do this on Washington State.
+
+##Public Schools and Private Schools
+1.https://www.niche.com/k12/search/best-schools/s/washington/
+
+We can scrape public schools list and private schools list from niche.com using library('rvest') and SelectorGadget(http://selectorgadget.com/).The reason to use data from niche is that we can use niche's school ranking information.There are other ranking sources such as US News,or you can use other source you trust more.
+
+```{r eval=FALSE,echo=TRUE,message=FALSE,error=FALSE,warning=FALSE,results='hide'}
+for (page_no in 1:page_total){
+  rank_data_page<-c()
+  s_name_page<-c()
+  s_district_page<-c()
+  n_rating_page<-c()
+  students_num_page<-c()
+  teacher_ratio_page<-c()
+  
+  high_url<-paste(high_url_prefix,as.character(page_no),sep="")
+  webpage_high<-read_html(high_url)
+  #Scrape School Ranking  
+  rank_data_page<-html_text(html_nodes(webpage_high,'.search-result-badge-ordinal'))
+  if(length(rank_data_page)<page_total){
+    n<-length(rank_data_page)+1
+    if(page_no!=page_total){
+      k<-cnt_perpage
+    }else{
+      k<-result_cnt-cnt_perpage*(page_no-1)
+    }
+    for (i in n:k){
+      rank_data_page[i]=NA
+    }
+   }else{
+    rank_data_page<-as.numeric(rank_data_page)
+   }
+   rank_data<-c(rank_data,rank_data_page)
+   #Scrape School Name   
+   s_name_page<-html_text(html_nodes(webpage_high,'.search-result-entity-name'))
+   s_name_page<-gsub("^\\s+|\\s+$", "", s_name_page)
+   s_name<-c(s_name,s_name_page)
+   #School District+Grade: .search-result-tagline__item
+   s_dist_grade_page<-html_text(html_nodes(webpage_high,'.search-result-tagline__item'))
+   s_dist_grade_page<-s_dist_grade_page[ !grepl("Online|online", s_dist_grade_page)]
+   s_dist_grade_page<-s_dist_grade_page[  !s_dist_grade_page %in% c("Public School","Public school","public school")]
+   s_dist_grade_page<-s_dist_grade_page[!grepl("[[:digit:]]", s_dist_grade_page)]
+   s_dist_grade_page<-gsub("^\\s+|\\s+$", "", s_dist_grade_page)
+   s_district<-c(s_district,s_dist_grade_page)
+   #Scrape Niche Rating
+   n_rating_page<-html_text(html_nodes(webpage_high,'.niche__grade'))
+   n_rating<-c(n_rating,n_rating_page)
+   #Scrape Students Number
+   students_num_page<-html_text(html_nodes(webpage_high,'.search-result-fact-list__item:nth-child(2) .search-result-fact__value'))
+   students_num<-c(students_num,as.numeric(gsub(",","",students_num_page)))
+   #Scrape Student-Teacher Ratio
+   teacher_ratio_page<-html_text(html_nodes(webpage_high,'.search-result-fact-list__item~ .search-result-fact-list__item+ .search-result-fact-list__item .search-result-fact__value'))
+   teacher_ratio<-c(teacher_ratio,teacher_ratio_page)
+}
+best_public_high_wa<-data.frame(rank_data,s_name,s_district,n_rating,students_num,teacher_ratio)
+```
+
+##Job Market Data
+
+Employment Security Deapartment of Washington State: https://esd.wa.gov/labormarketinfo/occupations
+
+I choose using "Occupational employment and wage estimates for 2017"."Monthly employment report
+" is good,but there is just PDF files instead of files with format as Excel or CSV.Another reason is the former has historical data files.
+
+##How to connect schools and jobs?
+Each shcool has address and five digits ZIP code.Occupational employment and wage estimates caculated by **Core Based Statistical Area (CBSA)**,which is a U.S. geographic area defined by the Office of Management and Budget (OMB). Then, we need to make a connection between ZIP code and CBSA.
+
+There is a good place to find the connection: 
+  - Missouri Census Data Center(http://mcdc2.missouri.edu/websas/geocorr2k.html)
+
+But in the school lists from niche,we don't have school address.
+If we want to have each school's address we need to do a second-layer-scraping for each school.
+That's too complicated.
+
+Here we can find another schools' list with address but without ranking: 
+  - OSPI website of Washington State: http://www.k12.wa.us/default.aspx
+
+##CBSA,MSA,μSAs 
+
+CBSA includes **metropolitan statistical area (MSA)** and  **micropolitan statistical areas (μSAs)**.
+Sometimes two or more areas (MSA or μSAs) are in one CBSA.To make things simple I equally use MSA and μSAs as same kind of Area,and then we can compare them on the same map.
+
+**Yes, Area, that's the purpose of this project:choosing an area to live and make our life better.**
+
+##A good way to watch areas: Map
+We have school lists,school ZIP codes,ZIP_CBSA connection.Now we still need maps data of CBSA.Thus we can view schools on map.
+US Census Bureau has nationwide CBSA maps data (https://www.census.gov/geo/maps-data/data/tiger-line.html).
+R has a good tool to get data from USCB which is **library(tigris)**.
+
+```{r eval=TRUE,echo=FALSE,message=FALSE,error=FALSE,warning=FALSE,results='hide'}
+options(tigris_class = "sf")
+options(tigris_use_cache = TRUE)
+
+myPal<-c("#3cb44b", "#ffe119", "#0082c8", "#f58231", "#911eb4", "#46f0f0", "#f032e6", "#d2f53c",
+         "#fabebe", "#008080", "#8569D5", "#aa6e28", "#fffac8", "#800000", "#aaffc3", "#808000",
+         "#ffd8b1", "#000080", "#808080", "#e6194b", "#0000ff", "#e6beff" )
+```
+
+
+We can use core_based_statistical_areas() function and metro_divisions() function to get all MSA and μSAs' maps data, and combine them together.
+```{r eval=TRUE,echo=TRUE,message=FALSE,error=FALSE,warning=FALSE,results='hide'}
+cb <- core_based_statistical_areas(cb = TRUE)
+
+md<-metro_divisions()
+```
+Then we use geo_join() function to bind school data and area map data, and use leaflet to do mapping.
+
+Note: Leaflet is a open-source JavaScript libraries for interactive maps.
+```{r eval=TRUE,echo=FALSE,message=FALSE,error=FALSE,warning=FALSE,results='hide'}
+cb_42644<-cb[cb$CBSAFP=="42660",]
+cb_45104<-cb_42644
+md_42644<-md[md$METDIVFP=="42644",]
+md_45104<-md[md$METDIVFP=="45104",]
+
+cb_42644$GEOID<-md_42644$METDIVFP
+cb_42644$NAME<-md_42644$NAME
+cb_42644$LSAD<-md_42644$LSAD
+cb_42644$ALAND<-md_42644$ALAND
+cb_42644$AWATER<-md_42644$AWATER
+cb_42644$geometry<-md_42644$geometry
+
+cb_45104$GEOID<-md_45104$METDIVFP
+cb_45104$NAME<-md_45104$NAME
+cb_45104$LSAD<-md_45104$LSAD
+cb_45104$ALAND<-md_45104$ALAND
+cb_45104$AWATER<-md_45104$AWATER
+cb_45104$geometry<-md_45104$geometry
+
+cb<-cb[!cb$CBSAFP=="42660",]
+cb<-rbind(cb,cb_42644)
+cb<-rbind(cb,cb_45104)
+```
+Now, we can do mapping for public and private schools!
+
+#Public School on MSA and μSAs
+```{r eval=TRUE,echo=FALSE,message=FALSE,error=FALSE,warning=FALSE,results='hide'}
+pub_school_msa<-read.table("PUB_SCHOOL_ZIP_MSA.csv",header = TRUE,sep=",",colClasses = 'character',stringsAsFactors=FALSE)
+pub_school_msa$rank_data<-as.numeric(pub_school_msa$rank_data)
+pub_school_msa$students_num<-as.numeric(pub_school_msa$students_num)
+posn.jd <- position_jitterdodge(0.5, 0, 0.6)
+pub_msa_school<-read.table("pub_msa_school.csv",header = TRUE,sep=",",stringsAsFactors=FALSE)
+pub_msa_school$MSA.code<-as.character(pub_msa_school$MSA.code)
+```
+
+```{r eval=TRUE,echo=TRUE,message=FALSE,error=FALSE,warning=FALSE,fig.fullheight=TRUE, fig.width=9, fig.height=6}
+pub_geo_msa_school<-geo_join(cb, pub_msa_school, 'GEOID', 'MSA.code', how = "inner")
+pub_msa_school_map <- leaflet(pub_geo_msa_school) %>%
+  addProviderTiles("MapBox", options = providerTileOptions(
+    id = "mapbox.light",
+    accessToken = Sys.getenv('MAPBOX_ACCESS_TOKEN')))
+
+pub_bins <- c(0,10,20,30,50,100,150,200,250,300,Inf)
+
+pub_pal <- colorBin("Spectral", domain = pub_geo_msa_school$high_rank, bins = pub_bins)
+
+pub_labels <- sprintf(
+  "<strong>%s</strong><br/>Public School Counts: %s<br/>Click for more detail",
+  pub_geo_msa_school$NAME, pub_geo_msa_school$school_count
+) %>% lapply(htmltools::HTML)
+
+pub_popup_school <- sprintf(
+  "<strong>%s</strong><br/>School List:<br/>Rank | Name |<br/>%s",
+  pub_geo_msa_school$NAME, pub_geo_msa_school$school_list
+) %>% lapply(htmltools::HTML)
+
+pub_msa_school_map <- pub_msa_school_map %>% addPolygons(
+  fillColor = ~pub_pal(high_rank),
+  weight = 2,
+  opacity = 1,
+  color = "white",
+  dashArray = "3",
+  fillOpacity = 0.7,
+  highlight = highlightOptions(
+    weight = 5,
+    color = "#666",
+    dashArray = "",
+    fillOpacity = 0.7,
+    bringToFront = TRUE),
+  label = pub_labels,
+  labelOptions = labelOptions(
+    style = list("font-weight" = "normal", padding = "3px 8px"),
+    textsize = "15px",
+    direction = "auto"),
+  popup = pub_popup_school,
+  popupOptions = popupOptions(maxWidth=500,maxHeight=500,closeOnClick = TRUE,autoPan=TRUE,keepInView=TRUE)
+  
+)
+pub_msa_school_map <- pub_msa_school_map %>%addLegend("bottomright", pal = pub_pal, 
+                                              values = ~high_rank,
+                                              title = "Public School Highest Rank",
+                                              opacity = 1
+)
+pub_msa_school_map
+```
+I use different colors for different areas according the highest rank of schools in each area because a common thinking: Which one is the best school in this area?That doesn't means highest ranking is everything.It's just a dimension to look things.
+Clicking on a area you can view a list of public schools in this area ordered by school's rank.
+
+We also can do some plots to find more.
+
+```{r eval=TRUE,echo=TRUE,message=FALSE,error=FALSE,warning=FALSE,results='hide',fig.fullheight=TRUE, fig.width=13, fig.height=8}
+ggplot(pub_school_msa,aes(x =factor(MSA.name),y=rank_data,col=factor(n_rating)) )+
+  geom_point(size=2,alpha=0.9,position=posn.jd)+
+  scale_x_discrete("Area Name") + 
+  scale_y_continuous("Public School Ranking") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+  theme(legend.text = element_text(size=8),legend.key.size=unit(0.4, "cm"))+
+  guides(col = guide_legend(ncol = 1,title = "School Rating"))+
+  scale_color_brewer(palette="Spectral")
+```
+
+```{r eval=TRUE,echo=TRUE,message=FALSE,error=FALSE,warning=FALSE,results='hide',fig.fullheight=TRUE, fig.width=13, fig.height=8}
+ggplot(pub_school_msa,aes(x =factor(MSA.name),fill=factor(n_rating)) )+
+  geom_bar()+
+  scale_x_discrete("Area Name") + 
+  scale_y_continuous("Public School Count") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+  guides(fill = guide_legend(ncol = 1,title = "School Rating"))+
+  scale_fill_brewer(palette="Spectral")
+```
+
+From those plots, we can see Seattle-Bellevue-Everett and Olimpia-Tumwater have quite more public schools than other areas.Between them,Olimpia-Tumwater has more public shools,and Seattle-Bellevue-Everett has more top ten public schools.
+
+To simplize this report,we can made abbreviations for name of each area.
+For example we can name Seattle-Bellevue-Everett as **A_Seattle**, Portland-Vancouver-Hillsborough as **A_Portland**.
+**A_** means Area_.But we sill can see the full names on the plots.
+
+#Plots: Private Schools on MSA and μSAs
+
+```{r eval=TRUE,echo=FALSE,message=FALSE,error=FALSE,warning=FALSE,results='hide'}
+pri_school_msa<-read.table("PRI_SCHOOL_ZIP_MSA.csv",header = TRUE,sep=",",colClasses = 'character',stringsAsFactors=FALSE)
+pri_school_msa$rank_data<-as.numeric(pri_school_msa$rank_data)
+pri_school_msa$students_num<-as.numeric(pri_school_msa$students_num)
+
+posn.jd <- position_jitterdodge(0.5, 0, 0.6)
+pri_msa_school<-read.table("pri_msa_school.csv",header = TRUE,sep=",",stringsAsFactors=FALSE)
+pri_msa_school$MSA.code<-as.character(pri_msa_school$MSA.code)
+pri_geo_msa_school<-geo_join(cb, pri_msa_school, 'GEOID', 'MSA.code', how = "inner")
+
+pri_msa_school_map <- leaflet(pri_geo_msa_school) %>%
+  addProviderTiles("MapBox", options = providerTileOptions(
+    id = "mapbox.light",
+    accessToken = Sys.getenv('MAPBOX_ACCESS_TOKEN')))
+
+pri_bins <- c(0,10,20,30,50,70,100,150,200,300,Inf)
+
+pri_pal <- colorBin("Spectral", domain = pri_geo_msa_school$high_rank, bins = pri_bins)
+
+pri_labels <- sprintf(
+  "<strong>%s</strong><br/>Private School Counts: %s<br/>Click for more detail",
+  pri_geo_msa_school$NAME, pri_geo_msa_school$school_count
+) %>% lapply(htmltools::HTML)
+
+pri_popup_school <- sprintf(
+  "<strong>%s</strong><br/>School List:<br/>Rank | Name |<br/>%s",
+  pri_geo_msa_school$NAME, pri_geo_msa_school$school_list
+) %>% lapply(htmltools::HTML)
+```
+
+```{r eval=TRUE,echo=FALSE,message=FALSE,error=FALSE,warning=FALSE,fig.fullheight=TRUE, fig.width=9, fig.height=6}
+pri_msa_school_map <- pri_msa_school_map %>% addPolygons(
+  fillColor = ~pri_pal(high_rank),
+  weight = 2,
+  opacity = 1,
+  color = "white",
+  dashArray = "3",
+  fillOpacity = 0.7,
+  highlight = highlightOptions(
+    weight = 5,
+    color = "#666",
+    dashArray = "",
+    fillOpacity = 0.7,
+    bringToFront = TRUE),
+  label = pri_labels,
+  labelOptions = labelOptions(
+    style = list("font-weight" = "normal", padding = "3px 8px"),
+    textsize = "15px",
+    direction = "auto"),
+  popup = pri_popup_school,
+  popupOptions = popupOptions(maxWidth=500,maxHeight=500,closeOnClick = TRUE,autoPan=TRUE,keepInView=TRUE)
+  
+)
+pri_msa_school_map <- pri_msa_school_map %>%addLegend("bottomright", pal = pri_pal, 
+                                                      values = ~high_rank,
+                                                      title = "Private School Highest Rank",
+                                                      #labFormat = labelFormat(prefix = "$"),
+                                                      opacity = 1
+)
+pri_msa_school_map
+```
+
+
+```{r eval=TRUE,echo=TRUE,message=FALSE,error=FALSE,warning=FALSE,results='hide',fig.fullheight=TRUE, fig.width=13, fig.height=8}
+ggplot(pri_school_msa,aes(x =factor(MSA.name),y=rank_data,col=factor(n_rating)) )+
+  geom_point(size=2,alpha=0.9,position=posn.jd)+
+  scale_x_discrete("Area Name") + 
+  scale_y_continuous("Private School Ranking") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+  theme(legend.text = element_text(size=8),legend.key.size=unit(0.4, "cm"))+
+  guides(col = guide_legend(ncol = 1,title = "School Rating"))+
+  scale_color_brewer(palette="Spectral")
+
+```
+
+
+```{r eval=TRUE,echo=TRUE,message=FALSE,error=FALSE,warning=FALSE,results='hide',fig.fullheight=TRUE, fig.width=13, fig.height=8}
+ggplot(pri_school_msa,aes(x =factor(MSA.name),fill=factor(n_rating)) )+
+  geom_bar()+
+  scale_x_discrete("Area Name") + 
+  scale_y_continuous("Private School Count") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+  guides(fill = guide_legend(ncol = 1,title = "School Rating"))+
+  scale_fill_brewer(palette="Spectral")
+```
+
+For private schools,A_Seattle has both most private schools and most top ranking private schools.
+but we can not have just one candidate,A_Tacoma area is also a good choice.
+
+On the map for private schools,the schools' count is far less than public schools'.
+Actually I scraped 138 private schools from niche website and more from the OSPI website.But there are just 57 private schools on the map.The reason is that many private shcools' ZIP code were not matched in the ZIP-CBSA list( Public schools worked well ).For FindHome's next version,the first thing I need to do is making a better ZIP-CBSA mapping list.  
+
+Ok, we can make a area selection for public schools and for private schools.
+
+**Selection 1:Best Areas for Schools**
+
+  * Public Schools Area Selection:  { Seattle-Bellevue-Everett, Olimpia-Tumwater }
+  
+  * Private Schools Area Selection: { Seattle-Bellevue-Everett, Tacoma-Lakewood }
+  
+#Plots: Employment and Annual Wage
+```{r eval=TRUE,echo=FALSE,message=FALSE,error=FALSE,warning=FALSE,results='hide'}
+employment_category<-read.table("employment_category.csv",header = TRUE,sep=",",stringsAsFactors=FALSE)
+msa_employ_stat<-read.table("msa_employ_stat.csv",header = TRUE,sep=",",stringsAsFactors=FALSE)
+msa_employ_stat$MSA.code<-as.character(msa_employ_stat$MSA.code)
+```
+After plotting schools, let's see how's going on employment.Similar as schools,we can use map to have a first look.
+```{r eval=TRUE,echo=FALSE,message=FALSE,error=FALSE,warning=FALSE,results='hide'}
+msa_employ_stat<-geo_join(cb, msa_employ_stat, 'GEOID', 'MSA.code', how = "inner")
+msa_employ_map <- leaflet(msa_employ_stat) %>%
+  addProviderTiles("MapBox", options = providerTileOptions(
+    id = "mapbox.light",
+    accessToken = Sys.getenv('MAPBOX_ACCESS_TOKEN')))
+labels_employ<- sprintf(
+  "<strong>%s</strong><br/>2017 Estimate Employments: %s<br/>Click for more detail",
+  msa_employ_stat$NAME,msa_employ_stat$employ_tot
+)%>% lapply(htmltools::HTML)
+
+popup_employ<- sprintf(
+  "<strong>%s</strong><br/>Statistic by Ocuupation Category:<br/>|      Occupations Category       | Employments | Mean  Wage |<br/>%s",
+  msa_employ_stat$NAME,msa_employ_stat$occu_cat_list
+)%>% lapply(htmltools::HTML)
+```
+
+```{r eval=TRUE,echo=TRUE,message=FALSE,error=FALSE,warning=FALSE,fig.fullheight=TRUE, fig.width=9, fig.height=6}
+bins_employ <- c(0,50000,100000,150000,250000,400000,700000,1100000,1500000,Inf)
+pal_employ <- colorBin("YlOrRd", domain = msa_employ_stat$employ_tot, bins = bins_employ)
+msa_employ_map <- msa_employ_map %>% addPolygons(
+  fillColor = ~pal_employ(employ_tot),
+  weight = 2,
+  opacity = 1,
+  color = "white",
+  dashArray = "3",
+  fillOpacity = 0.7,
+  highlight = highlightOptions(
+    weight = 5,
+    color = "#666",
+    dashArray = "",
+    fillOpacity = 0.7,
+    bringToFront = TRUE),
+  label = labels_employ,
+  labelOptions = labelOptions(
+    clickable = TRUE,
+    style = list("font-weight" = "normal", padding = "3px 8px"),
+    textsize = "10px",
+    direction = "auto"),
+  popup = popup_employ,
+  popupOptions = popupOptions(maxWidth=500,maxHeight=800,closeOnClick = TRUE,autoPan=TRUE,keepInView=TRUE)
+)
+
+msa_employ_map <- msa_employ_map %>%addLegend("bottomright", pal = pal_employ, values = ~employ_tot,
+                                              title = "Estimate Employments(2017)",
+                                              opacity = 1
+)
+msa_employ_map
+```
+
+On this map,we can see A_Seattle and A_Portland have distinctive more employment than other areas.They both have more than one million employment.Clicking each area on the map, we can get a list for 22 occupation categories including employment and mean annual wage.
+
+Next,we can do plots to have more details.
+
+Employment for each area:
+
+```{r eval=TRUE,echo=TRUE,message=FALSE,error=FALSE,warning=FALSE,results='hide',fig.fullheight=TRUE, fig.width=16, fig.height=10}
+ggplot(employment_category,aes(x =factor(MSA.name),y=EST.employment,col=factor(SOC.CategoryName)) )+
+  geom_point(position="jitter",alpha=1,size=3)+
+  scale_x_discrete("Area Name") + 
+  scale_y_continuous("Employment Count") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+  theme(legend.text = element_text(size=8),legend.key.size=unit(0.4, "cm"))+
+  guides(col = guide_legend(ncol = 1,title = "Occupation Category"))+
+  scale_colour_manual(values = myPal)
+```
+
+Here we use 22 distinctive colors to mark each occupation's employment by it's occupation category.A_Seattle and A_Portland obviously have more employment.
+Then we have second selection.
+
+**Selection 2: Areas for Most Employment in 2017**
+
+  - { Seattle-Bellevue-Everett, Portland-Vancouver-Hillsborough }
+
+Among those categories, we can see six occupation categories which have most employment/occupation :
+
+  - { Sales_Related,  Computer_Mathmatical, Food_Preparation_Serving, Office_Administrative_Support, Healthcare_Practioners_Technical, Transportation_MaterialMoving }
+
+Note: Computer_Mathematical, Transportation_MaterialMoving are quite stronger in A_Seattle than other areas.
+
+Occupations for each area:
+
+```{r eval=TRUE,echo=TRUE,message=FALSE,error=FALSE,warning=FALSE,results='hide',fig.fullheight=TRUE, fig.width=16, fig.height=10}
+ggplot(employment_category,aes(x =factor(MSA.name),fill=factor(SOC.CategoryName)) )+
+  geom_bar()+
+  scale_x_discrete("Area Name") + 
+  scale_y_continuous("Occupations") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+  theme(legend.text = element_text(size=8),legend.key.size=unit(0.4, "cm"))+
+  guides(fill = guide_legend(ncol = 1,title = "Occupation Category"))+
+  scale_fill_manual(values = myPal)
+```
+
+A_Portland has more occupations than A_Seattle!
+I've never known there is a area as big as great seattle metropolitan in Washington State before I moved in.
+This is a good news for me. But why? Why there is one and why I didn't know anything about it?
+How about annual wage ? Let's go next plot.
+
+Annual Wage for each area:
+
+```{r eval=TRUE,echo=TRUE,message=FALSE,error=FALSE,warning=FALSE,results='hide',fig.fullheight=TRUE, fig.width=16, fig.height=10}
+ggplot(employment_category,aes(x =factor(MSA.name),y=ANNUAL.wage,col=factor(SOC.CategoryName)) )+
+  geom_point(position="jitter",alpha=1,size=2)+
+  scale_x_discrete("Area Name") + 
+  scale_y_continuous("Annual Wage") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+  theme(legend.text = element_text(size=8),legend.key.size=unit(0.4, "cm"))+
+  guides(col = guide_legend(ncol = 1,title = "Occupation Category"))+
+  #scale_color_brewer(palette="Paired")
+  scale_colour_manual(values = myPal)
+```
+
+Oh,Healthcare_Practitioner_Technical has so many high wage occupations! Next is Management.
+
+Transportation_MaterialMoving, Computer_Mathematical and Legal have some high wage positions. 
+
+We can have a set for most high wage occupation categories:
+
+  - { Healthcare_Practioners_Technical, Management, Transportation_MaterialMoving,  Computer_Mathmatical, Education_Training_Library }
+
+Till now,we know there are two areas which have most occupations and employment in Washington State.
+
+How about comparing those two during the past ten years? Let's do it.
+
+#Seattle-Bellevue-Everett Area VS Vancouver-Portland-Hillsborough Area 2008-2017
+```{r eval=TRUE,echo=FALSE,message=FALSE,error=FALSE,warning=FALSE,results='hide'}
+Seattle_VanPort_08_17<-read.table("Seattle_VanPort_08_17.csv",header = TRUE,sep=",",stringsAsFactors=FALSE)
+Seattle_VanPort_08_17_stat<-read.table("Seattle_VanPort_08_17_stat.csv",header = TRUE,sep=",",stringsAsFactors=FALSE)
+Seattle_VanPort_08_17$Year<-as.character(Seattle_VanPort_08_17$Year)
+Seattle_VanPort_08_17$SOC.CategoryCode<-as.character(Seattle_VanPort_08_17$SOC.CategoryCode)
+Seattle_VanPort_08_17$MSA.code<-as.character(Seattle_VanPort_08_17$MSA.code)
+Seattle_VanPort_08_17_stat$Year<-as.character(Seattle_VanPort_08_17_stat$Year)
+Seattle_VanPort_08_17_stat$MSA.code<-as.character(Seattle_VanPort_08_17_stat$MSA.code)
+```
+Mean Wage:
+
+```{r eval=TRUE,echo=TRUE,message=FALSE,error=FALSE,warning=FALSE,results='hide',fig.fullheight=TRUE, fig.width=16, fig.height=10}
+ggplot(Seattle_VanPort_08_17_stat,aes(x =Year,y=mean_wage ,col=SOC.CategoryName,
+                                      group=SOC.CategoryName,size=employ_sum) )+
+  geom_line(size=1.8)+
+  geom_line(inherit.aes = TRUE)+
+  scale_x_discrete("Year") +
+  scale_y_continuous("Mean Wage") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+  theme(legend.text = element_text(size=8),legend.key.size=unit(0.6, "cm"))+
+  guides(col = guide_legend(ncol = 1,title = "Occupation Category"))+
+  scale_colour_manual(values = myPal)+
+  facet_grid(. ~ MSA.name)
+```
+
+Firstly let's see plot on mean annual wage.
+Management,Computer_Mathematical,Architechture,Business_Financial have beautiful going-up line shapes.
+Healthcare_Practitioner_Technical and Legal are also strong.
+
+Here we use employment sum as line size,more thicker more employment.For this combined measurement,Management,Computer_Mathmatical, Healthcare_Practitioner_Technical and Business_Financial have most strong line shapes.
+
+We notice that there is a sudden change on lines' size in A_Portland in 2010. Why?
+
+Let's see employment plot. 
+
+Employment Sum by Occupation Categories:
+
+```{r eval=TRUE,echo=TRUE,message=FALSE,error=FALSE,warning=FALSE,results='hide',fig.fullheight=TRUE, fig.width=16, fig.height=10}
+ggplot(Seattle_VanPort_08_17_stat,aes(x =Year,y=employ_sum ,col=SOC.CategoryName,
+                                      group=SOC.CategoryName,size=mean_wage) )+
+  geom_line(size=1.8)+
+  geom_line(inherit.aes = TRUE)+
+  scale_x_discrete("Year") +
+  scale_y_continuous("Employments") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+  theme(legend.text = element_text(size=8),legend.key.size=unit(0.6, "cm"))+
+  guides(col = guide_legend(ncol = 1,title = "Occupation Category"))+
+  scale_colour_manual(values = myPal)+
+  facet_grid(. ~ MSA.name)
+```
+
+There is a obvious jumping on employment for every occupation categories in A_Portland in 2010! 
+
+After checking description in original data files,I found this time-line:
+
+```{r eval=TRUE,echo=FALSE,message=FALSE,error=FALSE,warning=FALSE,results='asis'}
+library(knitr)
+Portland_MSA_Hist<-read.table("Portland_MSA_Hist.csv",header = TRUE,sep=",",colClasses = 'character',stringsAsFactors=FALSE)
+kable(Portland_MSA_Hist)
+```
+
+People combined five counties in Oregon State ( Clackamas, Columbia, Multnoma,Washington and Yamhill), with two counties in in Washington State(Clark and Skamania).
+
+Why they did this? 
+
+By this combine,can people really work and live as similar as in A_Seattle? To answer those questions, it seems that I need doing Data_Word_Science.
+Let's put those questions aside and keep moving forward.
+
+We notice that Computer_Mathematical and Business_Financial in A_Seattle are quite more stronger than which in A_Portland.
+
+Considering employment and mean annual wage together, we can have third selection!
+
+**Selection 3: Most Strong Occupation Categories in A_Seattle and A_Portland**
+
+  - A_Seattle: 
+  
+    - By Mean Annual Wage:
+    
+      - { Management, Computer_Mathematical, Healthcare_Practitioner_Technical, Architechture_Engineering, Legal, Businees_Financial }
+  
+    - By Employment:
+      
+      - { Office_Administrative,Sales_Related,Food_Prepareation_Serving,Computer_Mathematical,Businees_Financial,Transportation_MaterialMoving }
+
+  - A_Portland:
+  
+    - By Mean Annual Wage:
+    
+      - { Management, Healthcare_Practitioner_Technical,Computer_Mathematical,Legal,Architechture_Engineering,Life_Physical_Social Science }
+  
+    - By Employment:
+    
+      - { Office_Administrative,Sales_Related,Food_Prepareation_Serving,Management,Transportation_MaterialMoving,Production }
+      
+We can use intersection of employment and mean annual wage to have a simple selection:
+
+  - A_Seattle:  { Computer_Mathematical, Businees_Financial }
+
+  - A_Portland: { Management }
+
+Next let's compare occupations between A_Seattle and A_Portland.
+
+```{r eval=TRUE,echo=TRUE,message=FALSE,error=FALSE,warning=FALSE,results='hide',fig.fullheight=TRUE, fig.width=16, fig.height=10}
+ggplot(Seattle_VanPort_08_17, aes (x = ANNUAL.wage, fill= factor(SOC.CategoryName))) +
+  geom_histogram(binwidth = 10000)+
+  scale_x_continuous("Annual Wage") +
+  scale_y_continuous("Occupations") +
+  scale_fill_manual(values = myPal)+
+  facet_grid(.~MSA.name)+
+  guides(fill = guide_legend(ncol=1,label.position = "right", 
+                             label.hjust = 1,
+                             keyheight = 1,
+                             title = "Occupation Category"))
+```
+
+From this plot,we can see nearly below the line of 40k annual wage, A_Portland has more occupations than those in A_Seattle.But above the line,A_Seattle has more occupations.
+
+We talk about more about mean annual wage.How about annual wage for each occupations? 
+
+Let's see next plot.
+
+```{r eval=TRUE,echo=FALSE,message=FALSE,error=FALSE,warning=FALSE,results='hide'}
+Seattle_VanPort_08_17$wagecat<-cut(Seattle_VanPort_08_17$ANNUAL.wage,
+                                   c(0,50000,100000,150000,200000,250000,300000),
+                                   dig.lab = 0,ordered=TRUE)
+levels(Seattle_VanPort_08_17$wagecat)<-c("Wage:0-50K","Wage:50K-100K","Wage:100K-150K",
+                                         "Wage:150K-200K","Wage:200K-250K","Wage:250K-300K")
+```
+
+```{r eval=TRUE,echo=TRUE,message=FALSE,error=FALSE,warning=FALSE,results='hide',fig.fullheight=TRUE, fig.width=16, fig.height=10}
+ggplot(Seattle_VanPort_08_17, aes(x=SOC.code,y=ANNUAL.wage,col=SOC.CategoryName) )+ 
+  geom_point(size=2,alpha=0.8)+
+  scale_y_continuous("Annual Wage",labels = scales::comma) +
+  scale_x_discrete("Occupations",labels=NULL) +
+  scale_colour_manual(values = myPal)+
+  facet_grid(.~ MSA.name)+
+  guides(col = guide_legend(ncol=1,label.position = "left", 
+                             label.hjust = 1,
+                             keyheight = 1,
+                             title = "Occupation Category"))
+```
+
+What a high mountain! Healthcare_Practitioner_Technical has a quite big gap from lowest wage to highest wage!
+
+Next,how about that we make several groups for annual wage from zero to 300K and see how the distribution will be. 
+
+```{r eval=TRUE,echo=TRUE,message=FALSE,error=FALSE,warning=FALSE,results='hide',fig.fullheight=TRUE, fig.width=16, fig.height=10}
+ggplot(Seattle_VanPort_08_17, aes(x=SOC.code,y=EST.employment,col=SOC.CategoryName) )+ 
+  geom_point()+
+  scale_y_continuous("Employment",labels = scales::comma) +
+  scale_x_discrete("Occupations",labels=NULL) +
+  scale_colour_manual(values = myPal)+
+  facet_grid(wagecat~ MSA.name)+
+  theme(strip.text.y = element_text(size=8))+
+  guides(col = guide_legend(ncol=1,label.position = "left", 
+                            label.hjust = 1,
+                            keyheight = 1,
+                            title = "Occupation Category"))
+```
+
+Above 150K annual wage,Healthcare_Practitioner_Technical has most dots in both areas.Managements in A_Seattle has more dots than that in A_Portland. Computer_Mathematical just has one dot in each area.
+
+From 50K to 150K, A_Seattle has quite more employment,especially on Computer_Mathematical category.
+
+Next let's see how annual wage and employment changed during past ten years in those two areas.
+
+```{r eval=TRUE,echo=TRUE,message=FALSE,error=FALSE,warning=FALSE,results='hide',fig.fullheight=TRUE, fig.width=16, fig.height=10}
+ggplot(Seattle_VanPort_08_17, aes(x=Year,y=SOC.CategoryName,fill=ANNUAL.wage)) + 
+  geom_tile()+
+  scale_fill_gradient(low = "#3333ff",high = "#ffcc00",
+                      limits=c(0, 200000), 
+                      breaks=seq(0,200000,by=10000))+
+  facet_grid(.~ MSA.name)+
+  scale_x_discrete("Year") +
+  scale_y_discrete("Occypation Category") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+  guides(fill = guide_legend(ncol=1,label.position = "left", 
+                             label.hjust = 1,
+                             keyheight = 1,
+                             title = "Annual Wage"))
+```
+
+My goodness, Management is a real golden category! People in it don't have enough time to enjoy blue sky!
+
+Employers in A_Portland paid more to Computer_Mathematical guys in 2011.
+
+Their fellows in A_Seattle did same thing in 2015,but they paid less to Business_Financial people in the same year.
+
+```{r eval=TRUE,echo=TRUE,message=FALSE,error=FALSE,warning=FALSE,results='hide',fig.fullheight=TRUE, fig.width=16, fig.height=10}
+ggplot(Seattle_VanPort_08_17_stat, aes(x=Year,y=SOC.CategoryName,fill=employ_sum)) + 
+  geom_tile()+
+  scale_fill_gradient(low = "#ffff99",high = "#cc0000",
+                      limits=c(0, 300000), 
+                      breaks=seq(0,300000,by=10000))+
+  facet_grid(.~ MSA.name)+
+  scale_x_discrete("Year") +
+  scale_y_discrete("Occypation Category") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+  guides(fill = guide_legend(ncol=1,label.position = "left", 
+                             label.hjust = 1,
+                             keyheight = 1,
+                             title = "Employment Sum"))
+```
+
+For employment, Office_Administrative is No.1 contributor in both two areas.
+
+Sales,Transportaion_MaterialMoving and Food_Preparation_Serving are also strong.
+
+In Computer_Mathematical and Business_Financial,employment became stronger and stronger during recent five years in A_Seattle.
+
+We look lot on mean values.How about that we put mean, min and max values together for the past five years? 
+
+Let's do this.
+
+```{r eval=TRUE,echo=FALSE,message=FALSE,error=FALSE,warning=FALSE,results='hide'}
+select_year<-c("2013","2014","2015","2016","2017")
+Seattle_VanPort_13_17<-Seattle_VanPort_08_17[Seattle_VanPort_08_17$Year%in%select_year,]
+```
+
+```{r eval=TRUE,echo=TRUE,message=FALSE,error=FALSE,warning=FALSE,results='hide',fig.fullheight=TRUE, fig.width=16, fig.height=10}
+ggplot(Seattle_VanPort_13_17, aes(x=SOC.CategoryName,y=ANNUAL.wage,fill=SOC.CategoryName)) + 
+  geom_crossbar(stat="summary", fun.y=mean, fun.ymax=max, fun.ymin=min)+
+  facet_grid(Year~ MSA.name)+
+  scale_x_discrete("Occupation Category",labels=NULL) +
+  scale_y_continuous(name="Annual Wage", labels = scales::comma)+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+  scale_fill_manual(values = myPal)+
+  theme(legend.text = element_text(size=8),legend.position = "left")+
+  guides(fill = guide_legend(ncol=1,label.position = "left", 
+                             label.hjust = 1,
+                             keyheight = 1,
+                             title = "Occupation Category"))
+```
+
+Healthcare_Practitioner_Technical has a jump on highest wage in 2017 in A_Portland.
+
+This kind of jump happened in the same year in A_Seattle which is on Transportation_MaterialMoving.
+
+Education_Traning_Library has moved up a bit during recent three years in those two areas.That's a good news for me as a parent.
+
+```{r eval=TRUE,echo=TRUE,message=FALSE,error=FALSE,warning=FALSE,results='hide',fig.fullheight=TRUE, fig.width=16, fig.height=10}
+ggplot(Seattle_VanPort_13_17, aes(x=SOC.CategoryName,y=EST.employment,fill=SOC.CategoryName)) + 
+  geom_crossbar(stat="summary", fun.y=mean, fun.ymax=max, fun.ymin=min)+
+  facet_grid(Year~ MSA.name)+
+  scale_x_discrete("Occupation Category",labels=NULL) +
+  scale_y_continuous(name="Employment", labels = scales::comma)+
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))+
+  scale_fill_manual(values = myPal)+
+  theme(legend.text = element_text(size=8),legend.position = "left")+
+  guides(fill = guide_legend(ncol=1,label.position = "left", 
+                             label.hjust = 1,
+                             keyheight = 1,
+                             title = "Occupation Category"))
+```
+Such a big Tetris piece of Computer_Mathematical in A_Seattle! It's really a big feature of this area!
+
+Ok, we have done all of plots finally.Let's see what we get.We have three selection as below:
+
+**Selection 1:Best Areas for Schools**
+  
+  - Public Schools Area Selection:  { Seattle-Bellevue-Everett, Olimpia-Tumwater }
+  
+  - Private Schools Area Selection: { Seattle-Bellevue-Everett, Tacoma-Lakewood }
+
+**Selection 2: Areas for Most Employment in 2017**
+
+  - { Seattle-Bellevue-Everett, Portland-Vancouver-Hillsborough }
+
+**Selection 3: Most Strong Occupation Categories in A_Seattle and A_Portland**
+  
+  - A_Seattle:  { Computer_Mathematical, Businees_Financial }
+  
+  - A_Portland: { Management }
+  
+From **Selection 1** and **Selection 2**, we can easily pick up A_Seattle.It seems like a best area for public schools,private schools and employment.
+
+But looking for a job need to think over more about offering opportunity and wage level.If someone can have a good-payment job,then private boarding school is also a good choice.
+
+Let's see **Selection 3: Most Strong Occupation Categories in A_Seattle and A_Portland**.
+
+  - A_Seattle : { Computer_Mathematical, Businees_Financial }
+
+  - A_Portland: { Management }
+
+Here we find that Computer_Mathematical and Businees_Financial can have pretty good opportunities in A_Seattle, and Management is the best in A_Portland.
+
+How about me ? I used to be a computer software engineer, and I just find I have a big interest on being a Data Scientist. Then I should be in the Computer_Mathematical category.
+
+The answer for me is : **Seattle_Bellevue_Evereet area !**
+
+
+#Continuous Thinking
+This analysis doesn't consider consuming expense,real estate market and living services.So it's just a begining version,like FindHome_V_0.5. 
+
+And this is just my view dimension.How about another person such as a professional on grape wine brewing? He or She doesn't need a most active commercial area,but a good Vineyard.For this Walla Walla area is a right choice.
+
+If this analysis has a good will to serve one million people,then the version number should be FindHome_V_5.0e-7.
+
+
+
+
+
