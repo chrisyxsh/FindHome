@@ -1,9 +1,9 @@
-#Project Name: FindHome
+# Project Name: FindHome
 
-##Project Report: FindHome_Report.Rmd, FindHome_Report.html, FindHome_Report_Presentation.Rmd, FindHome_Report_Presentation.html
+## Project Report: FindHome_Report.Rmd, FindHome_Report.html, FindHome_Report_Presentation.Rmd, FindHome_Report_Presentation.html
 
 
-##Project Data Files: 
+## Project Data Files: 
 
   PUB_SCHOOL_ZIP_MSA.csv
 
