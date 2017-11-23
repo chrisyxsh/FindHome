@@ -1,0 +1,441 @@
+"Year","SOC.CategoryName","MSA.code","MSA.name","employ_sum","mean_wage","max_wage","min_wage","occu_count"
+"2008","Architecture and Engineering",38900,"Portland-Vancouver-Hillsboro, OR-WA",2540,62965.1764705882,92205,39674,17
+"2008","Arts, Design, Entertainment, Sports, and Media",38900,"Portland-Vancouver-Hillsboro, OR-WA",860,46268.7142857143,59997,27446,7
+"2008","Building and Grounds Cleaning and Maintenance",38900,"Portland-Vancouver-Hillsboro, OR-WA",3650,30728.8,47673,20663,5
+"2008","Business and Financial Operations",38900,"Portland-Vancouver-Hillsboro, OR-WA",4230,59346.4210526316,74631,49300,19
+"2008","Community and Social Service",38900,"Portland-Vancouver-Hillsboro, OR-WA",1680,41945.125,54301,24495,8
+"2008","Computer and Mathematical",38900,"Portland-Vancouver-Hillsboro, OR-WA",2080,67588,78873,45005,9
+"2008","Construction and Extraction",38900,"Portland-Vancouver-Hillsboro, OR-WA",8070,46107.2666666667,64605,28641,15
+"2008","Education, Training, and Library",38900,"Portland-Vancouver-Hillsboro, OR-WA",9230,47132.2777777778,64004,26510,18
+"2008","Farming, Fishing, and Forestry",38900,"Portland-Vancouver-Hillsboro, OR-WA",50,41794,41794,41794,1
+"2008","Food Preparation and Serving Related",38900,"Portland-Vancouver-Hillsboro, OR-WA",11610,24818.2,46353,18663,15
+"2008","Healthcare Practitioners and Technical",38900,"Portland-Vancouver-Hillsboro, OR-WA",5720,75460.4090909091,189306,27208,22
+"2008","Healthcare Support",38900,"Portland-Vancouver-Hillsboro, OR-WA",4000,34569.8888888889,56945,21189,9
+"2008","Installation, Maintenance, and Repair",38900,"Portland-Vancouver-Hillsboro, OR-WA",4310,46045.1176470588,73943,22411,17
+"2008","Legal",38900,"Portland-Vancouver-Hillsboro, OR-WA",520,55736.75,87196,36620,4
+"2008","Life, Physical, and Social Science",38900,"Portland-Vancouver-Hillsboro, OR-WA",1150,63309.7,79454,43344,10
+"2008","Management",38900,"Portland-Vancouver-Hillsboro, OR-WA",3430,92002.8333333333,168222,47132,24
+"2008","Office and Administrative Support",38900,"Portland-Vancouver-Hillsboro, OR-WA",22030,33994.6904761905,67836,20021,42
+"2008","Personal Care and Service",38900,"Portland-Vancouver-Hillsboro, OR-WA",3180,28484,47151,19363,10
+"2008","Production",38900,"Portland-Vancouver-Hillsboro, OR-WA",7920,32454.4444444444,60714,19875,36
+"2008","Protective Service",38900,"Portland-Vancouver-Hillsboro, OR-WA",2150,52185,82362,19761,8
+"2008","Sales and Related",38900,"Portland-Vancouver-Hillsboro, OR-WA",13870,51261,105609,19978,17
+"2008","Transportation and Material Moving",38900,"Portland-Vancouver-Hillsboro, OR-WA",7590,40281.9444444444,64015,22329,18
+"2009","Architecture and Engineering",38900,"Portland-Vancouver-Hillsboro, OR-WA",3112,66121.8823529412,103827,42705,17
+"2009","Arts, Design, Entertainment, Sports, and Media",38900,"Portland-Vancouver-Hillsboro, OR-WA",852,42232,62945,24825,7
+"2009","Building and Grounds Cleaning and Maintenance",38900,"Portland-Vancouver-Hillsboro, OR-WA",3490,31488,46339,21073,5
+"2009","Business and Financial Operations",38900,"Portland-Vancouver-Hillsboro, OR-WA",4246,62798.1052631579,83447,48846,19
+"2009","Community and Social Service",38900,"Portland-Vancouver-Hillsboro, OR-WA",1232,48294,62093,26861,8
+"2009","Computer and Mathematical",38900,"Portland-Vancouver-Hillsboro, OR-WA",2128,70119.75,83209,45834,8
+"2009","Construction and Extraction",38900,"Portland-Vancouver-Hillsboro, OR-WA",8287,49602.2666666667,67082,29968,15
+"2009","Education, Training, and Library",38900,"Portland-Vancouver-Hillsboro, OR-WA",8997,49395.1875,76983,27660,16
+"2009","Farming, Fishing, and Forestry",38900,"Portland-Vancouver-Hillsboro, OR-WA",78,38395.5,43622,33169,2
+"2009","Food Preparation and Serving Related",38900,"Portland-Vancouver-Hillsboro, OR-WA",11647,25719,41209,19429,13
+"2009","Healthcare Practitioners and Technical",38900,"Portland-Vancouver-Hillsboro, OR-WA",3628,81534.6086956522,217003,28591,23
+"2009","Healthcare Support",38900,"Portland-Vancouver-Hillsboro, OR-WA",4054,37131.625,54755,21558,8
+"2009","Installation, Maintenance, and Repair",38900,"Portland-Vancouver-Hillsboro, OR-WA",4018,50201.2,75629,22817,15
+"2009","Legal",38900,"Portland-Vancouver-Hillsboro, OR-WA",540,58984.25,92517,36021,4
+"2009","Life, Physical, and Social Science",38900,"Portland-Vancouver-Hillsboro, OR-WA",693,60231.1428571429,76360,31166,7
+"2009","Management",38900,"Portland-Vancouver-Hillsboro, OR-WA",4136,95489.3333333333,183223,43419,24
+"2009","Office and Administrative Support",38900,"Portland-Vancouver-Hillsboro, OR-WA",25516,35427.4390243902,63084,22006,41
+"2009","Personal Care and Service",38900,"Portland-Vancouver-Hillsboro, OR-WA",2504,30779.8888888889,49757,19718,9
+"2009","Production",38900,"Portland-Vancouver-Hillsboro, OR-WA",8295,33796.1842105263,58619,21457,38
+"2009","Protective Service",38900,"Portland-Vancouver-Hillsboro, OR-WA",2257,52918.1111111111,89978,19762,9
+"2009","Sales and Related",38900,"Portland-Vancouver-Hillsboro, OR-WA",13334,45838.4705882353,90527,21374,17
+"2009","Transportation and Material Moving",38900,"Portland-Vancouver-Hillsboro, OR-WA",7868,41484.6428571429,63840,24155,14
+"2010","Architecture and Engineering",38900,"Portland-Vancouver-Hillsboro, OR-WA",24694,66016.3846153846,96629,44491,26
+"2010","Arts, Design, Entertainment, Sports, and Media",38900,"Portland-Vancouver-Hillsboro, OR-WA",14742,49482.3714285714,95510,0,35
+"2010","Building and Grounds Cleaning and Maintenance",38900,"Portland-Vancouver-Hillsboro, OR-WA",27056,32086.75,49045,22087,8
+"2010","Business and Financial Operations",38900,"Portland-Vancouver-Hillsboro, OR-WA",48433,61077.6666666667,93393,37807,30
+"2010","Community and Social Service",38900,"Portland-Vancouver-Hillsboro, OR-WA",16835,44753.0588235294,59756,27760,17
+"2010","Computer and Mathematical",38900,"Portland-Vancouver-Hillsboro, OR-WA",29149,75588.2857142857,103847,45665,14
+"2010","Construction and Extraction",38900,"Portland-Vancouver-Hillsboro, OR-WA",43907,47583.4,83166,28232,35
+"2010","Education, Training, and Library",38900,"Portland-Vancouver-Hillsboro, OR-WA",58391,65515.5217391304,100619,25730,46
+"2010","Farming, Fishing, and Forestry",38900,"Portland-Vancouver-Hillsboro, OR-WA",2254,34918,53634,22145,8
+"2010","Food Preparation and Serving Related",38900,"Portland-Vancouver-Hillsboro, OR-WA",84577,24770.8235294118,42325,19871,17
+"2010","Healthcare Practitioners and Technical",38900,"Portland-Vancouver-Hillsboro, OR-WA",49238,85433.9333333333,232241,23441,45
+"2010","Healthcare Support",38900,"Portland-Vancouver-Hillsboro, OR-WA",24872,35487.5384615385,52236,21719,13
+"2010","Installation, Maintenance, and Repair",38900,"Portland-Vancouver-Hillsboro, OR-WA",35748,47647,73056,27897,39
+"2010","Legal",38900,"Portland-Vancouver-Hillsboro, OR-WA",6170,75979.5714285714,110325,48185,7
+"2010","Life, Physical, and Social Science",38900,"Portland-Vancouver-Hillsboro, OR-WA",10557,64486.7941176471,110691,33172,34
+"2010","Management",38900,"Portland-Vancouver-Hillsboro, OR-WA",49293,92367.7741935484,199978,38261,31
+"2010","Office and Administrative Support",38900,"Portland-Vancouver-Hillsboro, OR-WA",163841,36301.3846153846,51666,22066,52
+"2010","Personal Care and Service",38900,"Portland-Vancouver-Hillsboro, OR-WA",24339,27896.9545454545,47899,20225,22
+"2010","Production",38900,"Portland-Vancouver-Hillsboro, OR-WA",74162,36777.2333333333,85908,22039,90
+"2010","Protective Service",38900,"Portland-Vancouver-Hillsboro, OR-WA",16334,53092.875,83616,21160,16
+"2010","Sales and Related",38900,"Portland-Vancouver-Hillsboro, OR-WA",105201,49339.5238095238,102304,23028,21
+"2010","Transportation and Material Moving",38900,"Portland-Vancouver-Hillsboro, OR-WA",68394,42712.28125,95749,21067,32
+"2011","Architecture and Engineering",38900,"Portland-Vancouver-Hillsboro, OR-WA",22984,67574.0769230769,96081,47776,26
+"2011","Arts, Design, Entertainment, Sports, and Media",38900,"Portland-Vancouver-Hillsboro, OR-WA",15185,49301.0833333333,107301,0,36
+"2011","Building and Grounds Cleaning and Maintenance",38900,"Portland-Vancouver-Hillsboro, OR-WA",27395,32175.8888888889,49205,22656,9
+"2011","Business and Financial Operations",38900,"Portland-Vancouver-Hillsboro, OR-WA",47737,63462,95768,40496,28
+"2011","Community and Social Service",38900,"Portland-Vancouver-Hillsboro, OR-WA",16944,46009,58748,28396,17
+"2011","Computer and Mathematical",38900,"Portland-Vancouver-Hillsboro, OR-WA",22970,82426.3076923077,101531,67557,13
+"2011","Construction and Extraction",38900,"Portland-Vancouver-Hillsboro, OR-WA",35888,47491.7714285714,82676,30478,35
+"2011","Education, Training, and Library",38900,"Portland-Vancouver-Hillsboro, OR-WA",59698,66741.6808510638,104605,25159,47
+"2011","Farming, Fishing, and Forestry",38900,"Portland-Vancouver-Hillsboro, OR-WA",2352,35324.5,59499,22125,8
+"2011","Food Preparation and Serving Related",38900,"Portland-Vancouver-Hillsboro, OR-WA",82984,25854.1764705882,48432,20002,17
+"2011","Healthcare Practitioners and Technical",38900,"Portland-Vancouver-Hillsboro, OR-WA",51544,95635.5909090909,249716,23113,44
+"2011","Healthcare Support",38900,"Portland-Vancouver-Hillsboro, OR-WA",26386,34541.6363636364,49113,21587,11
+"2011","Installation, Maintenance, and Repair",38900,"Portland-Vancouver-Hillsboro, OR-WA",34287,46688.2432432432,78041,27191,37
+"2011","Legal",38900,"Portland-Vancouver-Hillsboro, OR-WA",6257,75979.5714285714,113866,54906,7
+"2011","Life, Physical, and Social Science",38900,"Portland-Vancouver-Hillsboro, OR-WA",8390,65789.0571428571,109253,34125,35
+"2011","Management",38900,"Portland-Vancouver-Hillsboro, OR-WA",49133,93685.8064516129,205157,39674,31
+"2011","Office and Administrative Support",38900,"Portland-Vancouver-Hillsboro, OR-WA",157183,36806.6730769231,56335,22272,52
+"2011","Personal Care and Service",38900,"Portland-Vancouver-Hillsboro, OR-WA",24818,29480.8095238095,55538,19668,21
+"2011","Production",38900,"Portland-Vancouver-Hillsboro, OR-WA",65981,37174.4431818182,89077,22463,88
+"2011","Protective Service",38900,"Portland-Vancouver-Hillsboro, OR-WA",15987,52736.1666666667,86099,21365,18
+"2011","Sales and Related",38900,"Portland-Vancouver-Hillsboro, OR-WA",101555,50606.95,104789,23753,20
+"2011","Transportation and Material Moving",38900,"Portland-Vancouver-Hillsboro, OR-WA",65953,42650.1818181818,70998,21145,33
+"2012","Architecture and Engineering",38900,"Portland-Vancouver-Hillsboro, OR-WA",24038,69125.8571428571,96984,47303,28
+"2012","Arts, Design, Entertainment, Sports, and Media",38900,"Portland-Vancouver-Hillsboro, OR-WA",15885,46491.9752941176,84734,0,34
+"2012","Building and Grounds Cleaning and Maintenance",38900,"Portland-Vancouver-Hillsboro, OR-WA",27858,33463.75,45692,23072,8
+"2012","Business and Financial Operations",38900,"Portland-Vancouver-Hillsboro, OR-WA",49299,63657.0714285714,106526,38515,28
+"2012","Community and Social Service",38900,"Portland-Vancouver-Hillsboro, OR-WA",17346,46414.1176470588,59971,24379,17
+"2012","Computer and Mathematical",38900,"Portland-Vancouver-Hillsboro, OR-WA",29311,81060.7692307692,108000,54397,13
+"2012","Construction and Extraction",38900,"Portland-Vancouver-Hillsboro, OR-WA",35289,49560.5294117647,89598,28029,34
+"2012","Education, Training, and Library",38900,"Portland-Vancouver-Hillsboro, OR-WA",61040,68402.7058823529,109223,25419,51
+"2012","Farming, Fishing, and Forestry",38900,"Portland-Vancouver-Hillsboro, OR-WA",2647,35271.25,55817,20881,8
+"2012","Food Preparation and Serving Related",38900,"Portland-Vancouver-Hillsboro, OR-WA",85339,25548.1764705882,47933,20135,17
+"2012","Healthcare Practitioners and Technical",38900,"Portland-Vancouver-Hillsboro, OR-WA",50156,97815.347826087,258317,32371,46
+"2012","Healthcare Support",38900,"Portland-Vancouver-Hillsboro, OR-WA",24020,35909.3076923077,55972,22436,13
+"2012","Installation, Maintenance, and Repair",38900,"Portland-Vancouver-Hillsboro, OR-WA",34559,46698.6315789474,73954,27922,38
+"2012","Legal",38900,"Portland-Vancouver-Hillsboro, OR-WA",5795,78920.715,114467,56734,6
+"2012","Life, Physical, and Social Science",38900,"Portland-Vancouver-Hillsboro, OR-WA",9315,71765.9428571429,119049,39149,35
+"2012","Management",38900,"Portland-Vancouver-Hillsboro, OR-WA",52048,93684.96875,216298,43554,32
+"2012","Office and Administrative Support",38900,"Portland-Vancouver-Hillsboro, OR-WA",155795,37367.7450980392,55151,22924,51
+"2012","Personal Care and Service",38900,"Portland-Vancouver-Hillsboro, OR-WA",30433,29621.9166666667,66513,19807,24
+"2012","Production",38900,"Portland-Vancouver-Hillsboro, OR-WA",64950,37995.183908046,100018,22062,87
+"2012","Protective Service",38900,"Portland-Vancouver-Hillsboro, OR-WA",15862,54736.1111111111,90123,22501,18
+"2012","Sales and Related",38900,"Portland-Vancouver-Hillsboro, OR-WA",100346,51890.2,105411,24232,20
+"2012","Transportation and Material Moving",38900,"Portland-Vancouver-Hillsboro, OR-WA",67592,42484.1254545455,66321,21348,33
+"2013","Architecture and Engineering",38900,"Portland-Vancouver-Hillsboro, OR-WA",24866,72634.0511111111,105465.41,48886.4,27
+"2013","Arts, Design, Entertainment, Sports, and Media",38900,"Portland-Vancouver-Hillsboro, OR-WA",16342,47796.6682352941,85369.76,0,34
+"2013","Building and Grounds Cleaning and Maintenance",38900,"Portland-Vancouver-Hillsboro, OR-WA",27580,33075.6577777778,42918.68,23516.92,9
+"2013","Business and Financial Operations",38900,"Portland-Vancouver-Hillsboro, OR-WA",52215,64758.8863333333,108336.66,40365.85,30
+"2013","Community and Social Service",38900,"Portland-Vancouver-Hillsboro, OR-WA",18231,45816.9522222222,60028.46,25297.71,18
+"2013","Computer and Mathematical",38900,"Portland-Vancouver-Hillsboro, OR-WA",32267,79663.3182352941,127231.56,54882.15,17
+"2013","Construction and Extraction",38900,"Portland-Vancouver-Hillsboro, OR-WA",36182,49790.2287878788,90680.83,28827.8,33
+"2013","Education, Training, and Library",38900,"Portland-Vancouver-Hillsboro, OR-WA",58178,65351.9385185185,106272.28,25491.32,54
+"2013","Farming, Fishing, and Forestry",38900,"Portland-Vancouver-Hillsboro, OR-WA",2660,36805.4528571429,54251.62,21300.09,7
+"2013","Food Preparation and Serving Related",38900,"Portland-Vancouver-Hillsboro, OR-WA",86295,25077.8588235294,44555.23,20277.22,17
+"2013","Healthcare Practitioners and Technical",38900,"Portland-Vancouver-Hillsboro, OR-WA",49755,90278.6382692308,253575.15,31426.25,52
+"2013","Healthcare Support",38900,"Portland-Vancouver-Hillsboro, OR-WA",23852,36186.955625,56932.08,23680.88,16
+"2013","Installation, Maintenance, and Repair",38900,"Portland-Vancouver-Hillsboro, OR-WA",35017,48864.8383333333,76784.58,27940.47,36
+"2013","Legal",38900,"Portland-Vancouver-Hillsboro, OR-WA",6194,70450.4442857143,113848.31,33290.67,7
+"2013","Life, Physical, and Social Science",38900,"Portland-Vancouver-Hillsboro, OR-WA",10249,70904.0383333333,131796.03,36923.28,36
+"2013","Management",38900,"Portland-Vancouver-Hillsboro, OR-WA",57074,93914.5709090909,215898.44,44354.44,33
+"2013","Office and Administrative Support",38900,"Portland-Vancouver-Hillsboro, OR-WA",160377,38195.1669811321,56674.58,23436.17,53
+"2013","Personal Care and Service",38900,"Portland-Vancouver-Hillsboro, OR-WA",31614,29451.4616,66232.17,17702.78,25
+"2013","Production",38900,"Portland-Vancouver-Hillsboro, OR-WA",64900,38811.5771910112,101424.93,19205.67,89
+"2013","Protective Service",38900,"Portland-Vancouver-Hillsboro, OR-WA",16003,54512.4878947368,92053.62,22656.64,19
+"2013","Sales and Related",38900,"Portland-Vancouver-Hillsboro, OR-WA",102297,51852.105,106389.22,24563.99,20
+"2013","Transportation and Material Moving",38900,"Portland-Vancouver-Hillsboro, OR-WA",66630,42983.5351612903,76722.75,21798.26,31
+"2014","Architecture and Engineering",38900,"Portland-Vancouver-Hillsboro, OR-WA",25812,72904.2222222222,105987,48451,27
+"2014","Arts, Design, Entertainment, Sports, and Media",38900,"Portland-Vancouver-Hillsboro, OR-WA",15709,47316.2916666667,80816,0,36
+"2014","Building and Grounds Cleaning and Maintenance",38900,"Portland-Vancouver-Hillsboro, OR-WA",28153,34007.2222222222,44266,23650,9
+"2014","Business and Financial Operations",38900,"Portland-Vancouver-Hillsboro, OR-WA",53747,66416.6896551724,106306,42760,29
+"2014","Community and Social Service",38900,"Portland-Vancouver-Hillsboro, OR-WA",19053,46752.6111111111,60936,23735,18
+"2014","Computer and Mathematical",38900,"Portland-Vancouver-Hillsboro, OR-WA",34800,80817.75,126940,47793,16
+"2014","Construction and Extraction",38900,"Portland-Vancouver-Hillsboro, OR-WA",37501,49007.4545454545,73082,24894,33
+"2014","Education, Training, and Library",38900,"Portland-Vancouver-Hillsboro, OR-WA",58605,67509.7037037037,115255,27094,54
+"2014","Farming, Fishing, and Forestry",38900,"Portland-Vancouver-Hillsboro, OR-WA",2899,38049.6666666667,57255,21696,9
+"2014","Food Preparation and Serving Related",38900,"Portland-Vancouver-Hillsboro, OR-WA",90085,24491.2941176471,41928,20365,17
+"2014","Healthcare Practitioners and Technical",38900,"Portland-Vancouver-Hillsboro, OR-WA",50316,87607.9092,247526,29289,50
+"2014","Healthcare Support",38900,"Portland-Vancouver-Hillsboro, OR-WA",22194,37021.0625,55189,23075,16
+"2014","Installation, Maintenance, and Repair",38900,"Portland-Vancouver-Hillsboro, OR-WA",35468,49212.5945945946,77230,29862,37
+"2014","Legal",38900,"Portland-Vancouver-Hillsboro, OR-WA",6972,73282.375,117217,39518,8
+"2014","Life, Physical, and Social Science",38900,"Portland-Vancouver-Hillsboro, OR-WA",9991,73415.75,145373,37009,36
+"2014","Management",38900,"Portland-Vancouver-Hillsboro, OR-WA",61551,94521.3939393939,210194,43617,33
+"2014","Office and Administrative Support",38900,"Portland-Vancouver-Hillsboro, OR-WA",158196,39147.2745098039,57545,23461,51
+"2014","Personal Care and Service",38900,"Portland-Vancouver-Hillsboro, OR-WA",33632,30749.2261904762,64560,19669.75,21
+"2014","Production",38900,"Portland-Vancouver-Hillsboro, OR-WA",65267,39209.9724444444,95211,21813,90
+"2014","Protective Service",38900,"Portland-Vancouver-Hillsboro, OR-WA",16707,54494.4736842105,93057,22652,19
+"2014","Sales and Related",38900,"Portland-Vancouver-Hillsboro, OR-WA",103228,52268.8947368421,108062,24582,19
+"2014","Transportation and Material Moving",38900,"Portland-Vancouver-Hillsboro, OR-WA",69614,46159.3714285714,92224,21554,35
+"2015","Architecture and Engineering",38900,"Portland-Vancouver-Hillsboro, OR-WA",26049,74355.4444444444,106061,48529,27
+"2015","Arts, Design, Entertainment, Sports, and Media",38900,"Portland-Vancouver-Hillsboro, OR-WA",16377,47970.6824324324,78207,0,37
+"2015","Building and Grounds Cleaning and Maintenance",38900,"Portland-Vancouver-Hillsboro, OR-WA",27470,35881,49621,25383,8
+"2015","Business and Financial Operations",38900,"Portland-Vancouver-Hillsboro, OR-WA",55739,66880.3448275862,95577,40538,29
+"2015","Community and Social Service",38900,"Portland-Vancouver-Hillsboro, OR-WA",18698,48816.7058823529,64448,31727,17
+"2015","Computer and Mathematical",38900,"Portland-Vancouver-Hillsboro, OR-WA",37174,86540.2,136592,50222,15
+"2015","Construction and Extraction",38900,"Portland-Vancouver-Hillsboro, OR-WA",41234,48487.6129032258,77341,26672,31
+"2015","Education, Training, and Library",38900,"Portland-Vancouver-Hillsboro, OR-WA",58955,69134.0545454545,154326,30571,55
+"2015","Farming, Fishing, and Forestry",38900,"Portland-Vancouver-Hillsboro, OR-WA",2786,38049.75,53395,22669,8
+"2015","Food Preparation and Serving Related",38900,"Portland-Vancouver-Hillsboro, OR-WA",94074,25482.5294117647,44502,21152,17
+"2015","Healthcare Practitioners and Technical",38900,"Portland-Vancouver-Hillsboro, OR-WA",55928,90103.8310909091,232179,31970,55
+"2015","Healthcare Support",38900,"Portland-Vancouver-Hillsboro, OR-WA",24783,38171.1875,56171,25291,16
+"2015","Installation, Maintenance, and Repair",38900,"Portland-Vancouver-Hillsboro, OR-WA",34615,50671,87932,28790,38
+"2015","Legal",38900,"Portland-Vancouver-Hillsboro, OR-WA",7541,75812,124282,41086,8
+"2015","Life, Physical, and Social Science",38900,"Portland-Vancouver-Hillsboro, OR-WA",9735,73534.622,139674,39389.77,35
+"2015","Management",38900,"Portland-Vancouver-Hillsboro, OR-WA",64397,95322.5172413793,203088,41887,29
+"2015","Office and Administrative Support",38900,"Portland-Vancouver-Hillsboro, OR-WA",155101,39920.8982352941,60239,20402.81,51
+"2015","Personal Care and Service",38900,"Portland-Vancouver-Hillsboro, OR-WA",28066,31367.68,54444,21326,21
+"2015","Production",38900,"Portland-Vancouver-Hillsboro, OR-WA",67282,39255.6136363636,97243,22148,88
+"2015","Protective Service",38900,"Portland-Vancouver-Hillsboro, OR-WA",16776,58699.7894736842,96493,22808,19
+"2015","Sales and Related",38900,"Portland-Vancouver-Hillsboro, OR-WA",105411,54385.55,119347,25944,20
+"2015","Transportation and Material Moving",38900,"Portland-Vancouver-Hillsboro, OR-WA",65901,44412.3333333333,81660,21970,30
+"2016","Architecture and Engineering",38900,"Portland-Vancouver-Hillsboro, OR-WA",24792,74921.9230769231,102596,52165,26
+"2016","Arts, Design, Entertainment, Sports, and Media",38900,"Portland-Vancouver-Hillsboro, OR-WA",17900,51197.6972972973,98670,0,37
+"2016","Building and Grounds Cleaning and Maintenance",38900,"Portland-Vancouver-Hillsboro, OR-WA",27553,37963.3333333333,53414,25983,6
+"2016","Business and Financial Operations",38900,"Portland-Vancouver-Hillsboro, OR-WA",58578,68610.2413793103,106694,36421,29
+"2016","Community and Social Service",38900,"Portland-Vancouver-Hillsboro, OR-WA",19728,50767.5882352941,68478,33123,17
+"2016","Computer and Mathematical",38900,"Portland-Vancouver-Hillsboro, OR-WA",40493,88130.1875,147913,52662,16
+"2016","Construction and Extraction",38900,"Portland-Vancouver-Hillsboro, OR-WA",42334,49731.3754054054,107677,27310,37
+"2016","Education, Training, and Library",38900,"Portland-Vancouver-Hillsboro, OR-WA",61145,68918.2577192982,153665,30972,57
+"2016","Farming, Fishing, and Forestry",38900,"Portland-Vancouver-Hillsboro, OR-WA",3294,38060,58239,23021,8
+"2016","Food Preparation and Serving Related",38900,"Portland-Vancouver-Hillsboro, OR-WA",98612,26945.7647058824,50742,21578,17
+"2016","Healthcare Practitioners and Technical",38900,"Portland-Vancouver-Hillsboro, OR-WA",56730,92265.1281818182,213693,31064,55
+"2016","Healthcare Support",38900,"Portland-Vancouver-Hillsboro, OR-WA",25708,38747.375,57595,24892,16
+"2016","Installation, Maintenance, and Repair",38900,"Portland-Vancouver-Hillsboro, OR-WA",35616,49663.00275,89413,29956,40
+"2016","Legal",38900,"Portland-Vancouver-Hillsboro, OR-WA",7985,77125.5066666667,131986,44387.56,9
+"2016","Life, Physical, and Social Science",38900,"Portland-Vancouver-Hillsboro, OR-WA",9646,74623.3055555556,131072,41949,36
+"2016","Management",38900,"Portland-Vancouver-Hillsboro, OR-WA",70008,97976.5483870968,193505,41814,31
+"2016","Office and Administrative Support",38900,"Portland-Vancouver-Hillsboro, OR-WA",158050,41049.4646153846,61401,22688,52
+"2016","Personal Care and Service",38900,"Portland-Vancouver-Hillsboro, OR-WA",35167,32997.2272727273,57717,21965,22
+"2016","Production",38900,"Portland-Vancouver-Hillsboro, OR-WA",68326,40325.9239130435,99880,22793,92
+"2016","Protective Service",38900,"Portland-Vancouver-Hillsboro, OR-WA",18308,60493,99720,22862,18
+"2016","Sales and Related",38900,"Portland-Vancouver-Hillsboro, OR-WA",109891,50321.0454545455,118978,25251,22
+"2016","Transportation and Material Moving",38900,"Portland-Vancouver-Hillsboro, OR-WA",71751,47673.0857142857,146096,22381,35
+"2017","Architecture and Engineering",38900,"Portland-Vancouver-Hillsboro, OR-WA",26246,75924.75,104444,53346,28
+"2017","Arts, Design, Entertainment, Sports, and Media",38900,"Portland-Vancouver-Hillsboro, OR-WA",20051,51354.9925714286,90226,0,35
+"2017","Building and Grounds Cleaning and Maintenance",38900,"Portland-Vancouver-Hillsboro, OR-WA",29346,41968.2857142857,58692,26973,7
+"2017","Business and Financial Operations",38900,"Portland-Vancouver-Hillsboro, OR-WA",62116,70851.8,121094,50940,30
+"2017","Community and Social Service",38900,"Portland-Vancouver-Hillsboro, OR-WA",20216,49690.2127777778,69426,28232,18
+"2017","Computer and Mathematical",38900,"Portland-Vancouver-Hillsboro, OR-WA",43028,89038.6875,159146,53700,16
+"2017","Construction and Extraction",38900,"Portland-Vancouver-Hillsboro, OR-WA",46963,53453.1142857143,92761,32011,35
+"2017","Education, Training, and Library",38900,"Portland-Vancouver-Hillsboro, OR-WA",61575,69369.3157894737,159035,31382,57
+"2017","Farming, Fishing, and Forestry",38900,"Portland-Vancouver-Hillsboro, OR-WA",2954,41631.1666666667,54238,25427,6
+"2017","Food Preparation and Serving Related",38900,"Portland-Vancouver-Hillsboro, OR-WA",102775,27604.0588235294,50290,22772,17
+"2017","Healthcare Practitioners and Technical",38900,"Portland-Vancouver-Hillsboro, OR-WA",61421,100033.310769231,290080,37447,52
+"2017","Healthcare Support",38900,"Portland-Vancouver-Hillsboro, OR-WA",28615,40563.0625,61640,25032,16
+"2017","Installation, Maintenance, and Repair",38900,"Portland-Vancouver-Hillsboro, OR-WA",35330,50242.3202702703,92081,28045,37
+"2017","Legal",38900,"Portland-Vancouver-Hillsboro, OR-WA",8038,82382,135876,52991,8
+"2017","Life, Physical, and Social Science",38900,"Portland-Vancouver-Hillsboro, OR-WA",10706,74472.7777777778,124210,42075,36
+"2017","Management",38900,"Portland-Vancouver-Hillsboro, OR-WA",75566,100223.733333333,202809,33603,30
+"2017","Office and Administrative Support",38900,"Portland-Vancouver-Hillsboro, OR-WA",162711,41904.4865384615,62001,24322,52
+"2017","Personal Care and Service",38900,"Portland-Vancouver-Hillsboro, OR-WA",36625,31645.8,51142,23255,25
+"2017","Production",38900,"Portland-Vancouver-Hillsboro, OR-WA",70004,41285.5505617978,107214,25668,89
+"2017","Protective Service",38900,"Portland-Vancouver-Hillsboro, OR-WA",19395,61321.2222222222,102099,23676,18
+"2017","Sales and Related",38900,"Portland-Vancouver-Hillsboro, OR-WA",113160,51620,122640,25390,22
+"2017","Transportation and Material Moving",38900,"Portland-Vancouver-Hillsboro, OR-WA",68868,48273.7867647059,87689,24276,34
+"2008","Architecture and Engineering",42644,"Seattle-Bellevue-Everett, WA",46620,68120.7407407407,92318,44557,27
+"2008","Arts, Design, Entertainment, Sports, and Media",42644,"Seattle-Bellevue-Everett, WA",25060,56612.2333333333,123045,31008,30
+"2008","Building and Grounds Cleaning and Maintenance",42644,"Seattle-Bellevue-Everett, WA",43780,34537.6,47407,23543,10
+"2008","Business and Financial Operations",42644,"Seattle-Bellevue-Everett, WA",87350,61731.4230769231,91564,32595,26
+"2008","Community and Social Service",42644,"Seattle-Bellevue-Everett, WA",25020,46127.8823529412,56081,30328,17
+"2008","Computer and Mathematical",42644,"Seattle-Bellevue-Everett, WA",85460,81165,113170,52040,14
+"2008","Construction and Extraction",42644,"Seattle-Bellevue-Everett, WA",93120,48491.4871794872,76400,26419,39
+"2008","Education, Training, and Library",42644,"Seattle-Bellevue-Everett, WA",75910,55864.4761904762,74961,28217,42
+"2008","Farming, Fishing, and Forestry",42644,"Seattle-Bellevue-Everett, WA",2360,36690,51234,24010,7
+"2008","Food Preparation and Serving Related",42644,"Seattle-Bellevue-Everett, WA",138800,26479.7647058824,49422,19736,17
+"2008","Healthcare Practitioners and Technical",42644,"Seattle-Bellevue-Everett, WA",72950,79378.6744186047,181431,33336,43
+"2008","Healthcare Support",42644,"Seattle-Bellevue-Everett, WA",31580,35720.1538461538,59910,24152,13
+"2008","Installation, Maintenance, and Repair",42644,"Seattle-Bellevue-Everett, WA",58530,46125.75,69209,27201,40
+"2008","Legal",42644,"Seattle-Bellevue-Everett, WA",12400,68436.5,96426,44424,6
+"2008","Life, Physical, and Social Science",42644,"Seattle-Bellevue-Everett, WA",24200,63821.5172413793,95685,36402,29
+"2008","Management",42644,"Seattle-Bellevue-Everett, WA",57310,102918.1,191947,52612,30
+"2008","Office and Administrative Support",42644,"Seattle-Bellevue-Everett, WA",280060,36878.1509433962,54024,22220,53
+"2008","Personal Care and Service",42644,"Seattle-Bellevue-Everett, WA",46490,30514.76,48852,20628,25
+"2008","Production",42644,"Seattle-Bellevue-Everett, WA",90170,38085.5057471264,107576,22637,87
+"2008","Protective Service",42644,"Seattle-Bellevue-Everett, WA",27180,52799.7333333333,85477,21228,15
+"2008","Sales and Related",42644,"Seattle-Bellevue-Everett, WA",181430,50877.45,97579,21692,20
+"2008","Transportation and Material Moving",42644,"Seattle-Bellevue-Everett, WA",115650,44582.275862069,103377,22712,29
+"2009","Architecture and Engineering",42644,"Seattle-Bellevue-Everett, WA",38142,73836.9545454545,108094,46141,22
+"2009","Arts, Design, Entertainment, Sports, and Media",42644,"Seattle-Bellevue-Everett, WA",21779,55918,91901,28690,28
+"2009","Building and Grounds Cleaning and Maintenance",42644,"Seattle-Bellevue-Everett, WA",35225,36072.5,51263,24449,6
+"2009","Business and Financial Operations",42644,"Seattle-Bellevue-Everett, WA",79826,65065.36,93674,29580,25
+"2009","Community and Social Service",42644,"Seattle-Bellevue-Everett, WA",14752,47593.4,56483,30718,15
+"2009","Computer and Mathematical",42644,"Seattle-Bellevue-Everett, WA",68181,82120.2,95245,53111,10
+"2009","Construction and Extraction",42644,"Seattle-Bellevue-Everett, WA",77620,49596.1891891892,78662,26721,37
+"2009","Education, Training, and Library",42644,"Seattle-Bellevue-Everett, WA",53498,54561.2592592593,85923,29398,27
+"2009","Farming, Fishing, and Forestry",42644,"Seattle-Bellevue-Everett, WA",2080,38424.2,51790,23532,5
+"2009","Food Preparation and Serving Related",42644,"Seattle-Bellevue-Everett, WA",114879,26930.0625,50613,20194,16
+"2009","Healthcare Practitioners and Technical",42644,"Seattle-Bellevue-Everett, WA",59928,89963.4047619048,221302,32148,42
+"2009","Healthcare Support",42644,"Seattle-Bellevue-Everett, WA",30007,36570.3076923077,60073,24999,13
+"2009","Installation, Maintenance, and Repair",42644,"Seattle-Bellevue-Everett, WA",43642,46870.7647058823,70578,26600,34
+"2009","Legal",42644,"Seattle-Bellevue-Everett, WA",10990,70854,122650,49410,4
+"2009","Life, Physical, and Social Science",42644,"Seattle-Bellevue-Everett, WA",23635,63683.25,92491,36951,28
+"2009","Management",42644,"Seattle-Bellevue-Everett, WA",60294,107203.655172414,207352,47417,29
+"2009","Office and Administrative Support",42644,"Seattle-Bellevue-Everett, WA",230828,37998.7058823529,55329,23127,51
+"2009","Personal Care and Service",42644,"Seattle-Bellevue-Everett, WA",42466,31432.12,46816,21362,25
+"2009","Production",42644,"Seattle-Bellevue-Everett, WA",71822,38261.1408450704,70389,22316,71
+"2009","Protective Service",42644,"Seattle-Bellevue-Everett, WA",21112,54554.1538461538,93146,21886,13
+"2009","Sales and Related",42644,"Seattle-Bellevue-Everett, WA",152778,52175.4736842105,95545,21679,19
+"2009","Transportation and Material Moving",42644,"Seattle-Bellevue-Everett, WA",88449,44081.7692307692,104963,23337,26
+"2010","Architecture and Engineering",42644,"Seattle-Bellevue-Everett, WA",34117,76143.1363636364,113079,45967,22
+"2010","Arts, Design, Entertainment, Sports, and Media",42644,"Seattle-Bellevue-Everett, WA",23805,57597.1,92257,24677,30
+"2010","Building and Grounds Cleaning and Maintenance",42644,"Seattle-Bellevue-Everett, WA",34473,37007,51348,24945,7
+"2010","Business and Financial Operations",42644,"Seattle-Bellevue-Everett, WA",78797,65778.0454545455,85513,38935,22
+"2010","Community and Social Service",42644,"Seattle-Bellevue-Everett, WA",17467,46977.7142857143,61540,30987,14
+"2010","Computer and Mathematical",42644,"Seattle-Bellevue-Everett, WA",89085,88500.1666666667,119827,52843,12
+"2010","Construction and Extraction",42644,"Seattle-Bellevue-Everett, WA",62202,50303.78125,76079,26528,32
+"2010","Education, Training, and Library",42644,"Seattle-Bellevue-Everett, WA",54869,51684.2083333333,62953,31040,24
+"2010","Farming, Fishing, and Forestry",42644,"Seattle-Bellevue-Everett, WA",1453,42699.75,57692,24582,8
+"2010","Food Preparation and Serving Related",42644,"Seattle-Bellevue-Everett, WA",111242,26921.0625,45137,20564,16
+"2010","Healthcare Practitioners and Technical",42644,"Seattle-Bellevue-Everett, WA",60060,94031.9523809524,234999,31229,42
+"2010","Healthcare Support",42644,"Seattle-Bellevue-Everett, WA",29976,34487.3846153846,54993,23336,13
+"2010","Installation, Maintenance, and Repair",42644,"Seattle-Bellevue-Everett, WA",44612,48975.7878787879,71889,29786,33
+"2010","Legal",42644,"Seattle-Bellevue-Everett, WA",11929,78767.5,125287,49274,6
+"2010","Life, Physical, and Social Science",42644,"Seattle-Bellevue-Everett, WA",22956,63945.32,91928,37027,25
+"2010","Management",42644,"Seattle-Bellevue-Everett, WA",67086,108392.433333333,212288,68770,30
+"2010","Office and Administrative Support",42644,"Seattle-Bellevue-Everett, WA",220420,38602.0588235294,55670,23772,51
+"2010","Personal Care and Service",42644,"Seattle-Bellevue-Everett, WA",41069,29980.4545454545,46264,22299,22
+"2010","Production",42644,"Seattle-Bellevue-Everett, WA",59006,38588.2153846154,72167,20620,65
+"2010","Protective Service",42644,"Seattle-Bellevue-Everett, WA",21096,57075.5454545455,94655,22556,11
+"2010","Sales and Related",42644,"Seattle-Bellevue-Everett, WA",146777,55960,104907,24786,20
+"2010","Transportation and Material Moving",42644,"Seattle-Bellevue-Everett, WA",80660,48433.88,120864,24190,25
+"2011","Architecture and Engineering",42644,"Seattle-Bellevue-Everett, WA",31654,72972.0434782609,96816,49496,23
+"2011","Arts, Design, Entertainment, Sports, and Media",42644,"Seattle-Bellevue-Everett, WA",23109,60296.724137931,115236,31867,29
+"2011","Building and Grounds Cleaning and Maintenance",42644,"Seattle-Bellevue-Everett, WA",33362,36772,50283,24919,6
+"2011","Business and Financial Operations",42644,"Seattle-Bellevue-Everett, WA",81798,68540.5652173913,91466,38220,23
+"2011","Community and Social Service",42644,"Seattle-Bellevue-Everett, WA",17367,46927,57546,29840,15
+"2011","Computer and Mathematical",42644,"Seattle-Bellevue-Everett, WA",70670,91510.9090909091,119274,76591,11
+"2011","Construction and Extraction",42644,"Seattle-Bellevue-Everett, WA",47997,52827.5806451613,84212,31963,31
+"2011","Education, Training, and Library",42644,"Seattle-Bellevue-Everett, WA",62383,64722.5660377359,105872,31320,53
+"2011","Farming, Fishing, and Forestry",42644,"Seattle-Bellevue-Everett, WA",1172,42628,59390,24481,6
+"2011","Food Preparation and Serving Related",42644,"Seattle-Bellevue-Everett, WA",107037,26911.4375,44888,20388,16
+"2011","Healthcare Practitioners and Technical",42644,"Seattle-Bellevue-Everett, WA",60671,96749.1111111111,243088,31652,45
+"2011","Healthcare Support",42644,"Seattle-Bellevue-Everett, WA",31558,34781.7692307692,58270,24326,13
+"2011","Installation, Maintenance, and Repair",42644,"Seattle-Bellevue-Everett, WA",45696,50163.6470588235,72889,30642,34
+"2011","Legal",42644,"Seattle-Bellevue-Everett, WA",11627,73270.75,129583,50229,4
+"2011","Life, Physical, and Social Science",42644,"Seattle-Bellevue-Everett, WA",16764,66584.6896551724,115344,37995,29
+"2011","Management",42644,"Seattle-Bellevue-Everett, WA",67776,107542.266666667,217935,61978,30
+"2011","Office and Administrative Support",42644,"Seattle-Bellevue-Everett, WA",199207,39958.0408163265,57376,24699,49
+"2011","Personal Care and Service",42644,"Seattle-Bellevue-Everett, WA",37940,32781.0454545455,64565,22074,22
+"2011","Production",42644,"Seattle-Bellevue-Everett, WA",54842,40180.231884058,87272,22372,69
+"2011","Protective Service",42644,"Seattle-Bellevue-Everett, WA",19974,56952.9230769231,99523,23369,13
+"2011","Sales and Related",42644,"Seattle-Bellevue-Everett, WA",144187,55598.8421052632,105875,24145,19
+"2011","Transportation and Material Moving",42644,"Seattle-Bellevue-Everett, WA",74166,50316.4,120487,22907,30
+"2012","Architecture and Engineering",42644,"Seattle-Bellevue-Everett, WA",31747,76547.9166666667,111576,52046,24
+"2012","Arts, Design, Entertainment, Sports, and Media",42644,"Seattle-Bellevue-Everett, WA",24075,57847.9655172414,95350,32099,29
+"2012","Building and Grounds Cleaning and Maintenance",42644,"Seattle-Bellevue-Everett, WA",33244,37856.2857142857,51810,25548,7
+"2012","Business and Financial Operations",42644,"Seattle-Bellevue-Everett, WA",85095,70264.25,93390,39607,24
+"2012","Community and Social Service",42644,"Seattle-Bellevue-Everett, WA",16624,47186.3846153846,59031,30709,13
+"2012","Computer and Mathematical",42644,"Seattle-Bellevue-Everett, WA",92818,89095.8181818182,107896,59291,11
+"2012","Construction and Extraction",42644,"Seattle-Bellevue-Everett, WA",44158,53977.6666666667,85240,30836,30
+"2012","Education, Training, and Library",42644,"Seattle-Bellevue-Everett, WA",64235,65778.3076923077,107349,31860,52
+"2012","Farming, Fishing, and Forestry",42644,"Seattle-Bellevue-Everett, WA",475,41186.75,68154,23806,4
+"2012","Food Preparation and Serving Related",42644,"Seattle-Bellevue-Everett, WA",107513,27399,45654,21068,16
+"2012","Healthcare Practitioners and Technical",42644,"Seattle-Bellevue-Everett, WA",62432,86150.4825581395,253779,33861,43
+"2012","Healthcare Support",42644,"Seattle-Bellevue-Everett, WA",28322,37671,57232,24649,12
+"2012","Installation, Maintenance, and Repair",42644,"Seattle-Bellevue-Everett, WA",46457,52934.9032258065,73618,33492,31
+"2012","Legal",42644,"Seattle-Bellevue-Everett, WA",12001,72587.3375,124379,51285,4
+"2012","Life, Physical, and Social Science",42644,"Seattle-Bellevue-Everett, WA",13930,72145.72,115012,40707,25
+"2012","Management",42644,"Seattle-Bellevue-Everett, WA",70915,108758,211712,62514,30
+"2012","Office and Administrative Support",42644,"Seattle-Bellevue-Everett, WA",188612,41046.7021276596,59034,25518,47
+"2012","Personal Care and Service",42644,"Seattle-Bellevue-Everett, WA",39611,32026.6333333333,51638,23680,18
+"2012","Production",42644,"Seattle-Bellevue-Everett, WA",53059,40862.5208823529,88328,24601,68
+"2012","Protective Service",42644,"Seattle-Bellevue-Everett, WA",20431,59242.4615384615,97821,24737,13
+"2012","Sales and Related",42644,"Seattle-Bellevue-Everett, WA",140762,55347.0555555556,115563,26255,18
+"2012","Transportation and Material Moving",42644,"Seattle-Bellevue-Everett, WA",74712,49275.0115384615,141179,24265,26
+"2013","Architecture and Engineering",42644,"Seattle-Bellevue-Everett, WA",45876,79190.6444827586,110990.83,51723.61,29
+"2013","Arts, Design, Entertainment, Sports, and Media",42644,"Seattle-Bellevue-Everett, WA",26545,57944.0159375,112087.6,30926.52,32
+"2013","Building and Grounds Cleaning and Maintenance",42644,"Seattle-Bellevue-Everett, WA",35058,40703.08875,55490.86,25495.55,8
+"2013","Business and Financial Operations",42644,"Seattle-Bellevue-Everett, WA",98318,73004.1188888889,99467.39,39243.42,27
+"2013","Community and Social Service",42644,"Seattle-Bellevue-Everett, WA",18375,47822.1811111111,57933.25,29620.94,18
+"2013","Computer and Mathematical",42644,"Seattle-Bellevue-Everett, WA",106777,91861.0682352941,119706.2,57415.27,17
+"2013","Construction and Extraction",42644,"Seattle-Bellevue-Everett, WA",45979,54477.873125,85550.64,31684.64,32
+"2013","Education, Training, and Library",42644,"Seattle-Bellevue-Everett, WA",71139,67899.9321818182,131391.58,29751.7,55
+"2013","Farming, Fishing, and Forestry",42644,"Seattle-Bellevue-Everett, WA",588,41393.335,65688.05,22908.19,6
+"2013","Food Preparation and Serving Related",42644,"Seattle-Bellevue-Everett, WA",108611,27813.308,47183.63,21985.63,15
+"2013","Healthcare Practitioners and Technical",42644,"Seattle-Bellevue-Everett, WA",64507,90324.4852830189,253239.63,34020.18,53
+"2013","Healthcare Support",42644,"Seattle-Bellevue-Everett, WA",31859,37643.4294117647,59368.18,25918.61,17
+"2013","Installation, Maintenance, and Repair",42644,"Seattle-Bellevue-Everett, WA",47826,52076.2088571429,76870.75,34794.8,35
+"2013","Legal",42644,"Seattle-Bellevue-Everett, WA",12320,72328.6777777778,127838.73,40064.59,9
+"2013","Life, Physical, and Social Science",42644,"Seattle-Bellevue-Everett, WA",18180,70329.1943243243,124349.74,34664.87,37
+"2013","Management",42644,"Seattle-Bellevue-Everett, WA",73724,108956.034,218923.23,53418.7,30
+"2013","Office and Administrative Support",42644,"Seattle-Bellevue-Everett, WA",195338,41192.9590909091,61261.46,25643.96,55
+"2013","Personal Care and Service",42644,"Seattle-Bellevue-Everett, WA",42291,31874.36,51925.27,22196.14,23
+"2013","Production",42644,"Seattle-Bellevue-Everett, WA",80786,41075.0502439024,92701.15,26121.72,82
+"2013","Protective Service",42644,"Seattle-Bellevue-Everett, WA",23360,60999.039047619,104668.3,24050.29,21
+"2013","Sales and Related",42644,"Seattle-Bellevue-Everett, WA",145987,57300.1536842105,126107.08,26797.72,19
+"2013","Transportation and Material Moving",42644,"Seattle-Bellevue-Everett, WA",81471,50233.7865714286,144051.64,24597.18,35
+"2014","Architecture and Engineering",42644,"Seattle-Bellevue-Everett, WA",49575,78585.6856666667,117480,42529.67,30
+"2014","Arts, Design, Entertainment, Sports, and Media",42644,"Seattle-Bellevue-Everett, WA",26233,58606.9393939394,112381,29623,33
+"2014","Building and Grounds Cleaning and Maintenance",42644,"Seattle-Bellevue-Everett, WA",33881,40527.8571428571,55915,25292,7
+"2014","Business and Financial Operations",42644,"Seattle-Bellevue-Everett, WA",105067,74261.2071428571,116291,33108,28
+"2014","Community and Social Service",42644,"Seattle-Bellevue-Everett, WA",19461,48379.1666666667,59246,30584,18
+"2014","Computer and Mathematical",42644,"Seattle-Bellevue-Everett, WA",115858,94859.6905882353,124360,61178,17
+"2014","Construction and Extraction",42644,"Seattle-Bellevue-Everett, WA",50882,56901.0909090909,91610,34487,33
+"2014","Education, Training, and Library",42644,"Seattle-Bellevue-Everett, WA",72740,67335.7636363636,135519,28611,55
+"2014","Farming, Fishing, and Forestry",42644,"Seattle-Bellevue-Everett, WA",1217,39770.4285714286,61050,22738,7
+"2014","Food Preparation and Serving Related",42644,"Seattle-Bellevue-Everett, WA",114809,27442.5294117647,50181,22269,17
+"2014","Healthcare Practitioners and Technical",42644,"Seattle-Bellevue-Everett, WA",67001,87673.9230769231,242164,35309,52
+"2014","Healthcare Support",42644,"Seattle-Bellevue-Everett, WA",31944,37955.9411764706,61064,27640,17
+"2014","Installation, Maintenance, and Repair",42644,"Seattle-Bellevue-Everett, WA",44621,53316.4117647059,80721,27633,34
+"2014","Legal",42644,"Seattle-Bellevue-Everett, WA",12688,73152.6666666667,131169,44526,9
+"2014","Life, Physical, and Social Science",42644,"Seattle-Bellevue-Everett, WA",17681,70972.6216216216,131806,36300,37
+"2014","Management",42644,"Seattle-Bellevue-Everett, WA",78487,106857.060606061,218305,45178,33
+"2014","Office and Administrative Support",42644,"Seattle-Bellevue-Everett, WA",196322,41743.3148148148,61038,25132,54
+"2014","Personal Care and Service",42644,"Seattle-Bellevue-Everett, WA",42451,32735.7083333333,51078,22914,24
+"2014","Production",42644,"Seattle-Bellevue-Everett, WA",85492,41319.1851851852,95119,24273,81
+"2014","Protective Service",42644,"Seattle-Bellevue-Everett, WA",24824,59862.6294736842,103476,23771,19
+"2014","Sales and Related",42644,"Seattle-Bellevue-Everett, WA",144397,57982.8333333333,115167,27383,18
+"2014","Transportation and Material Moving",42644,"Seattle-Bellevue-Everett, WA",86993,52995.1212121212,121563,23689,33
+"2015","Architecture and Engineering",42644,"Seattle-Bellevue-Everett, WA",46696,79639.3696428571,110472,56336,28
+"2015","Arts, Design, Entertainment, Sports, and Media",42644,"Seattle-Bellevue-Everett, WA",25826,59966.75,109336,29040,32
+"2015","Building and Grounds Cleaning and Maintenance",42644,"Seattle-Bellevue-Everett, WA",36244,41288.2222222222,55067,25659,9
+"2015","Business and Financial Operations",42644,"Seattle-Bellevue-Everett, WA",100959,76736.36,122629,37344,25
+"2015","Community and Social Service",42644,"Seattle-Bellevue-Everett, WA",18961,50557.1111111111,74202,31322,18
+"2015","Computer and Mathematical",42644,"Seattle-Bellevue-Everett, WA",111369,96454.5,121433,60605,16
+"2015","Construction and Extraction",42644,"Seattle-Bellevue-Everett, WA",55333,55120.9677419355,81699,26561,31
+"2015","Education, Training, and Library",42644,"Seattle-Bellevue-Everett, WA",74811,68773.7068965517,137819,30470,58
+"2015","Farming, Fishing, and Forestry",42644,"Seattle-Bellevue-Everett, WA",1098,43217.1666666667,61887,23743,6
+"2015","Food Preparation and Serving Related",42644,"Seattle-Bellevue-Everett, WA",119953,28900.1764705882,54178,22797,17
+"2015","Healthcare Practitioners and Technical",42644,"Seattle-Bellevue-Everett, WA",67657,88023.0204081633,219342,35641,49
+"2015","Healthcare Support",42644,"Seattle-Bellevue-Everett, WA",33216,38580.8823529412,61239,26732,17
+"2015","Installation, Maintenance, and Repair",42644,"Seattle-Bellevue-Everett, WA",44619,53482.1513888889,82953,28871,36
+"2015","Legal",42644,"Seattle-Bellevue-Everett, WA",12352,80462.125,133094,48559,8
+"2015","Life, Physical, and Social Science",42644,"Seattle-Bellevue-Everett, WA",16742,74659.0567647059,135132,38541,34
+"2015","Management",42644,"Seattle-Bellevue-Everett, WA",79634,109565.242424242,232341,43885,33
+"2015","Office and Administrative Support",42644,"Seattle-Bellevue-Everett, WA",176572,42621.6037735849,60199,24873,53
+"2015","Personal Care and Service",42644,"Seattle-Bellevue-Everett, WA",41440,34161.5,64162,23646,26
+"2015","Production",42644,"Seattle-Bellevue-Everett, WA",73574,42952.1447368421,102271,26229,76
+"2015","Protective Service",42644,"Seattle-Bellevue-Everett, WA",25895,62247.35,107590,25066,20
+"2015","Sales and Related",42644,"Seattle-Bellevue-Everett, WA",149625,63241.5294117647,119399,29004,17
+"2015","Transportation and Material Moving",42644,"Seattle-Bellevue-Everett, WA",90359,53596.1665714286,119795,24594,35
+"2016","Architecture and Engineering",42644,"Seattle-Bellevue-Everett, WA",48511,83159.4675,114952,53362,28
+"2016","Arts, Design, Entertainment, Sports, and Media",42644,"Seattle-Bellevue-Everett, WA",26847,63136.9666666667,104493,31378,30
+"2016","Building and Grounds Cleaning and Maintenance",42644,"Seattle-Bellevue-Everett, WA",35408,43867.875,59573,26136,8
+"2016","Business and Financial Operations",42644,"Seattle-Bellevue-Everett, WA",107606,78997.5948148148,122464,51004,27
+"2016","Community and Social Service",42644,"Seattle-Bellevue-Everett, WA",17546,50828.8888888889,65648,30364,18
+"2016","Computer and Mathematical",42644,"Seattle-Bellevue-Everett, WA",116899,101205.176470588,151007,63162,17
+"2016","Construction and Extraction",42644,"Seattle-Bellevue-Everett, WA",60545,57238.0234375,84015,32941,32
+"2016","Education, Training, and Library",42644,"Seattle-Bellevue-Everett, WA",74787,68881.9237288136,142435,31896,59
+"2016","Farming, Fishing, and Forestry",42644,"Seattle-Bellevue-Everett, WA",1597,44030.1666666667,62986,24810,6
+"2016","Food Preparation and Serving Related",42644,"Seattle-Bellevue-Everett, WA",126128,30419.4117647059,57238,23831,17
+"2016","Healthcare Practitioners and Technical",42644,"Seattle-Bellevue-Everett, WA",69079,90848.3653846154,234713,37922,52
+"2016","Healthcare Support",42644,"Seattle-Bellevue-Everett, WA",32990,39246.375,59114,26860,16
+"2016","Installation, Maintenance, and Repair",42644,"Seattle-Bellevue-Everett, WA",48869,53388.9302857143,86510,28581,35
+"2016","Legal",42644,"Seattle-Bellevue-Everett, WA",12391,79344.6666666667,137555,49172,9
+"2016","Life, Physical, and Social Science",42644,"Seattle-Bellevue-Everett, WA",17350,74500.9526470588,143987,39535,34
+"2016","Management",42644,"Seattle-Bellevue-Everett, WA",85104,111701.454545455,218393,45744,33
+"2016","Office and Administrative Support",42644,"Seattle-Bellevue-Everett, WA",207158,43536.5601851852,62087,25952,54
+"2016","Personal Care and Service",42644,"Seattle-Bellevue-Everett, WA",44309,34822.4981481482,57309,24973,27
+"2016","Production",42644,"Seattle-Bellevue-Everett, WA",77589,44657.5586904762,105290,26039,84
+"2016","Protective Service",42644,"Seattle-Bellevue-Everett, WA",27837,63829.2777777778,110274,26850,18
+"2016","Sales and Related",42644,"Seattle-Bellevue-Everett, WA",150977,56477.8571428571,120313,27324,21
+"2016","Transportation and Material Moving",42644,"Seattle-Bellevue-Everett, WA",98480,52531.4571428571,120995,25570,35
+"2017","Architecture and Engineering",42644,"Seattle-Bellevue-Everett, WA",40472,85485.5948148148,118590,56232,27
+"2017","Arts, Design, Entertainment, Sports, and Media",42644,"Seattle-Bellevue-Everett, WA",28823,63592.7318181818,111360,28040,33
+"2017","Building and Grounds Cleaning and Maintenance",42644,"Seattle-Bellevue-Everett, WA",35728,42693,55199,27446,7
+"2017","Business and Financial Operations",42644,"Seattle-Bellevue-Everett, WA",120013,78468.7857142857,112757,41082,28
+"2017","Community and Social Service",42644,"Seattle-Bellevue-Everett, WA",17434,52438.4444444444,71523,32911,18
+"2017","Computer and Mathematical",42644,"Seattle-Bellevue-Everett, WA",120297,99681.6875,133749,60141,16
+"2017","Construction and Extraction",42644,"Seattle-Bellevue-Everett, WA",65473,60151.4869444444,99242,32958,36
+"2017","Education, Training, and Library",42644,"Seattle-Bellevue-Everett, WA",76619,73464.2901694915,160837,33660,59
+"2017","Farming, Fishing, and Forestry",42644,"Seattle-Bellevue-Everett, WA",1668,43339.8333333333,59089,27577,6
+"2017","Food Preparation and Serving Related",42644,"Seattle-Bellevue-Everett, WA",133824,32861.1875,58250,25545,16
+"2017","Healthcare Practitioners and Technical",42644,"Seattle-Bellevue-Everett, WA",71677,94792.3533333333,240542,38490,51
+"2017","Healthcare Support",42644,"Seattle-Bellevue-Everett, WA",32278,40905.8125,60530,27024,16
+"2017","Installation, Maintenance, and Repair",42644,"Seattle-Bellevue-Everett, WA",46852,55789.7918181818,86486,29190,33
+"2017","Legal",42644,"Seattle-Bellevue-Everett, WA",12683,79790.13375,139967,51877,8
+"2017","Life, Physical, and Social Science",42644,"Seattle-Bellevue-Everett, WA",16729,76583.4242424242,109324,38501,33
+"2017","Management",42644,"Seattle-Bellevue-Everett, WA",92426,117054,221697,51052,33
+"2017","Office and Administrative Support",42644,"Seattle-Bellevue-Everett, WA",218738,44997.4067272727,65279,27018,55
+"2017","Personal Care and Service",42644,"Seattle-Bellevue-Everett, WA",45737,35653.8,58096,25884,25
+"2017","Production",42644,"Seattle-Bellevue-Everett, WA",76963,45887.1294805195,111155,27832,77
+"2017","Protective Service",42644,"Seattle-Bellevue-Everett, WA",26524,69144.5882352941,113090,28935,17
+"2017","Sales and Related",42644,"Seattle-Bellevue-Everett, WA",149244,58131.4285714286,125460,28200,21
+"2017","Transportation and Material Moving",42644,"Seattle-Bellevue-Everett, WA",101908,59151.3052941177,206452,27142,34
