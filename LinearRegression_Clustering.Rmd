@@ -1,0 +1,199 @@
+---
+title: "Linear Regression and Clustering"
+author: "Xu Yang"
+date: "12/13/2017"
+output: 
+  html_document:
+    theme: united
+    highlight: tango
+---
+
+# Function
+This function is to caculate the distances between members of clusters, and plot the distances against the number of clusters.Then throuhg the plot we can choose the number of cluster to do clustering.
+
+```{r eval=TRUE,echo=TRUE,message=FALSE,error=FALSE,warning=FALSE,results='hide'}
+wssplot <- function(data, nc=15, seed=1234){
+  wss <- (nrow(data)-1)*sum(apply(data,2,var))
+  for (i in 2:nc){
+    set.seed(seed)
+    wss[i] <- sum(kmeans(data, centers=i)$withinss)}
+  
+  plot(1:nc, wss, type="b", xlab="Number of Clusters",
+       ylab="Within groups sum of squares")
+}
+```
+
+# Load Data 
+Here we use the estimate employment data of Seattle_Bellevue_Everett area and Portland_Vancouver_Hillsborough area which covers years from 2008 to 2017.
+
+We use 2008-2015 as traning data, and use 2016-2017 as test data.
+
+```{r eval=TRUE,echo=TRUE,message=FALSE,error=FALSE,warning=FALSE,results='hide'}
+Seattle_VanPort_08_17<-read.table("Seattle_VanPort_08_17.csv",header = TRUE,sep=",",stringsAsFactors=FALSE)
+
+Seattle_VanPort_08_17$SOC.CategoryCode<-factor(Seattle_VanPort_08_17$SOC.CategoryCode)
+Seattle_VanPort_08_17$SOC.code<-factor(Seattle_VanPort_08_17$SOC.code)
+
+Seattle_VanPort_08_15<-subset(Seattle_VanPort_08_17, Year < 2016)
+
+Seattle_VanPort_16_17<-subset(Seattle_VanPort_08_17, Year > 2015)
+```
+
+
+# Correalations of Year, Employment and Anuual Wage
+
+```{r eval=TRUE,echo=TRUE,message=FALSE,error=FALSE,warning=FALSE}
+Seattle_VanPort.Y_W_E<-data.frame("year"=Seattle_VanPort_08_15$Year,
+                                  "wage"=Seattle_VanPort_08_15$ANNUAL.wage,               
+                                  "employment"=Seattle_VanPort_08_15$EST.employment)
+cor(Seattle_VanPort.Y_W_E)
+```
+
+It looks like there less correlation between Year,EST.employment and ANNUAL.wage.
+
+Let's do a linear regression to use Year+EST.employment against ANNUAL.wage
+
+# Linear Regression: Annual Wage against Year&Employment
+
+```{r eval=TRUE,echo=TRUE,message=FALSE,error=FALSE,warning=FALSE}
+employ.mod1<- lm(ANNUAL.wage ~ Year+EST.employment,data=na.omit(Seattle_VanPort_08_15))
+summary(employ.mod1)
+```
+
+The Year and EST.employment are both significant, but R-squared and Adjusted R-squared all are quite small,near around 0.01.
+
+We can try some category variables. Let's try occupation category at first
+
+# Linear Regression: Annual Wage against Occupation Categories
+
+```{r eval=TRUE,echo=TRUE,message=FALSE,error=FALSE,warning=FALSE,out.width="1980px"}
+employ.mod2<- lm(ANNUAL.wage ~ SOC.CategoryCode,data=na.omit(Seattle_VanPort_08_15))
+summary(employ.mod2)
+```
+
+All categories are significant. R-squared is up to 0.4444, and Adjusted R-squared is up to 0.4431. We have improvement but this model is not good enough yet.
+
+How about using occupation code?
+
+# Linear Regression: Annual Wage against Occupation Codes
+
+```{r eval=TRUE,echo=TRUE,message=FALSE,error=FALSE,warning=FALSE}
+employ.mod3<- lm(ANNUAL.wage ~ SOC.code,data=na.omit(Seattle_VanPort_08_15))
+summary(employ.mod3)
+```
+
+All occupation codes are significant.
+R-squared is up to 0.9472, and Adjusted R-squared is up to 0.9421. 
+It looks like a good model.Can we use it to do predicting?
+
+```{r eval=TRUE,echo=TRUE,message=TRUE,error=TRUE,warning=TRUE}
+predict(employ.mod3,newdata =Seattle_VanPort_16_17 )
+```
+
+Oh, here is a error that SOC.code has new levels.That means test data has some occupation codes which are not in the training data.
+
+How about "Computer and Mathmatical" occupation category? 
+Let's make the training data and test data for this category, and do linear regression for the new train data.
+
+# Linear Regression under "Computer and Mathmatical" occupation category
+
+```{r eval=TRUE,echo=TRUE,message=FALSE,error=FALSE,warning=FALSE}
+computer_train<-Seattle_VanPort_08_15[Seattle_VanPort_08_15$SOC.CategoryName=="Computer and Mathematical",]
+computer_train$SOC.code<-factor(computer_train$SOC.code)
+
+computer_test<-Seattle_VanPort_16_17[Seattle_VanPort_16_17$SOC.CategoryName=="Computer and Mathematical",]
+computer_test$SOC.code<-factor(computer_test$SOC.code)
+
+employ.mod4<- lm(ANNUAL.wage ~ SOC.code,data=na.omit(computer_train))
+summary(employ.mod4)
+```
+
+There are some levels that are not significant. And the R-squared is down to 0.73, Adjusted R-squared is down to 0.6837.
+
+This time let's see if we can do predicting.
+
+```{r eval=TRUE,echo=TRUE,message=FALSE,error=FALSE,warning=FALSE}
+predictWage_computer = predict(employ.mod4,newdata =computer_test )
+SSE=sum( (computer_test$ANNUAL.wage-predictWage_computer)^2)
+SST=sum( (computer_test$ANNUAL.wage-mean(computer_train$ANNUAL.wage))^2 )
+Rsquared_computer=1-SSE/SST
+print(paste("R-squared for predictWage_computer is: ", Rsquared_computer))
+```
+
+We can do predicting for "Computer and Mathmatical" category.The R-squared for the prediction is 0.5866,and it is no so high as that for all occupation categories.
+
+It seems there something need to be digged out between annual wage and occupation code. Maybe companies' revenue,profit, or some economic data of industries. This can be done in another project. Here let's see clustering.
+
+# Clustering under "Computer and Mathmatical" occupation category
+
+We do some plot for choosing the number of clusters.
+
+```{r eval=TRUE,echo=TRUE,message=FALSE,error=FALSE,warning=FALSE}
+employ.wage<-scale(computer_train[c(3,4)])
+
+wssplot(employ.wage)
+```
+
+From the plot we can see a bent when number of clusters is 3.
+Then we choose 3 as the number of clusters.
+
+```{r eval=TRUE,echo=TRUE,message=FALSE,error=FALSE,warning=FALSE}
+set.seed(1234)
+employ.km <- kmeans(employ.wage,centers=3,nstart=15)
+
+tapply(computer_train$ANNUAL.wage,employ.km$cluster,mean)
+
+tapply(computer_train$EST.employment,employ.km$cluster,mean)
+```
+
+Now,we can see the average annual wage and employment for three clusters.
+Cluster 1 has lowest aveage annual wage and employment. Cluster 2 has highest average anuual wage and employment.
+
+Then what kind of occupation titles are in the three clusters? We can put them together and have a look.
+
+```{r eval=TRUE,echo=FALSE,message=FALSE,error=FALSE,warning=FALSE}
+options(width = 2000)
+```
+
+```{r eval=TRUE,echo=TRUE,message=FALSE,error=FALSE,warning=FALSE}
+computer_train$cluster<-employ.km$cluster
+
+tidy_computer<-data.frame("SOC.title"=computer_train$SOC.title,"Employment"=computer_train$EST.employment,
+                          "Anuual.Wage"=computer_train$ANNUAL.wage,"Year"=computer_train$Year,
+                          "Cluster"=computer_train$cluster)
+
+tidy_computer[tidy_computer$Cluster==1,]
+```
+
+As a pre-data-scientist, I certainly care about statisticians. Statisticians appeared from 2010 to 2014 in cluster 1, and it's annual wage has a upgrowing trend.But in 2015, there is no statisticians in cluster 1.
+
+How about cluster 2?
+
+```{r eval=TRUE,echo=TRUE,message=FALSE,error=FALSE,warning=FALSE}
+tidy_computer[tidy_computer$Cluster==2,]
+```
+
+There are just software engineers and developers in the cluster2. Those guys have highest annual wage and great job opportunities!
+
+Finally let's take a look on cluster 3.
+
+```{r eval=TRUE,echo=TRUE,message=FALSE,error=FALSE,warning=FALSE}
+tidy_computer[tidy_computer$Cluster==3,]
+```
+
+Oh, I found statisticians again! They jump up to cluster 3 in 2015 because they got higher annual wage. 
+
+Congratulation!
+
+
+
+
+
+
+
+
+
+
+
+
+
